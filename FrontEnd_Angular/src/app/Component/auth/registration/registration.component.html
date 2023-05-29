@@ -1,0 +1,111 @@
+<div fxLayoutAlign="center center" fxFlexFill>
+    <div *ngIf="isloading">
+        <app-spineer></app-spineer>
+    </div>
+    <mat-card fxFlex="35" *ngIf="!isloading">
+        <div style="text-align: center;">
+
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" style="background-color: #3039A0; padding-top: 16px;">
+                <div class="imgLogo">
+                    <img src="assets\education.svg" alt="">
+                </div>
+                <h2 class="title">Nhân sự</h2>
+            </div>
+        </div>
+        <br>
+
+        <h2>Đăng kí tài khoản</h2>
+
+        <!-- form  -->
+        <form #regForm=ngForm (ngSubmit)="onSubmit(); regForm.resetForm();" *ngIf="!isloading">
+            <div *ngIf="name.touched && !name.valid">
+                <div *ngIf="name.errors.minlength">
+                    <small><mat-error>Tên là tối thiểu{{ name.errors.minlength.requiredLength }} kí tự.</mat-error></small>
+                </div>
+            </div>
+
+            <div *ngIf="phoneNumber.touched && !phoneNumber.valid">
+                <div *ngIf="phoneNumber.errors.maxlength">
+                    <small><mat-error>Họ là tối đa 12 ký tự.</mat-error></small>
+                </div>
+                <div *ngIf="phoneNumber.errors.pattern">
+                    <small><mat-error>Phải là số hợp lệ bắt đầu 0-9</mat-error></small>
+                </div>
+            </div>
+            <div *ngIf="password.touched && !password.valid">
+                <div *ngIf="password.errors.minlength">
+                    <small><mat-error>Mật khẩu phải chứa 6 ký tự.</mat-error></small>
+                </div>
+                <div *ngIf="password.errors.pattern">
+                    <small><mat-error>phải chứa ít nhất một chữ cái, ít nhất một số và dài hơn sáu ký tự.</mat-error></small>
+                </div>
+            </div>
+            <div *ngIf="confirmpassword.touched && !confirmpassword.valid">
+                <div *ngIf="confirmpassword.errors.minlength">
+                    <small><mat-error>Mật khẩu phải chứa 6 ký tự.</mat-error></small>
+                </div>
+                <div *ngIf="confirmpassword.errors.pattern">
+                    <small><mat-error>Password & Confirm Password không match nhau.</mat-error></small>
+                </div>
+            </div>
+            <!-- Ending Validation of all the input -->
+
+
+            <div class="example-container">
+                <!-- displaying error from backend -->
+                <div class="alert alert-danger text-justify" [hidden]="!error">{{error}}</div>
+                <div class="alert alert-success text-justify" [hidden]="!message">{{message}}</div>
+                <mat-form-field appearance="outline" fxLayout="column" style="width: 100%;">
+                    <mat-label>Enter Your name</mat-label>
+                    <input matInput minlength="3" maxlength="20" #name="ngModel" required [(ngModel)]="form.name" name="name">
+                    <mat-error>Please Enter valid Name </mat-error>
+
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="outline" fxLayout="column" style="width: 100%;">
+                <mat-label>Enter your Email</mat-label>
+                <input email required matInput type="email" placeholder="Email" [(ngModel)]="form.email" name="email">
+                <mat-icon style="color: #e1e4e4;" matSuffix>email</mat-icon>
+                <mat-error>Please Enter valid email </mat-error>
+            </mat-form-field>
+            <div class="example-container">
+                <mat-form-field style="width: 220px;" appearance="outline">
+                    <mat-label>Enter password</mat-label>
+                    <input #password="ngModel" matInput required type="password" minlength="5" [(ngModel)]="form.password" name="password" pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$">
+                    <mat-error>Please Enter Strong Password</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="width: 220px; padding-left: 6px;">
+                    <mat-label>Confirm password</mat-label>
+                    <input [(ngModel)]="form.confirmPassword" #pasword="ngModel" name="confirmPassword" matInput required type="password" #confirmpassword="ngModel" pattern="{{ password.value }}">
+                    <mat-error required>Please Enter valid Password</mat-error>
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Enter your Phone Number </mat-label>
+                <input #phoneNumber="ngModel" pattern="^[0-9]\d{9}$" [(ngModel)]="form.mobileNumber" minlength="9" maxlength="12" name="mobileNumber" matInput placeholder="Placeholder" required>
+                <mat-icon style="color: #e1e4e4;" matSuffix>phone</mat-icon>
+                <mat-error>Enter valid Phone number </mat-error>
+            </mat-form-field>
+            <!-- <h4 style="margin-right: 130px;">Register as</h4> -->
+            <!-- <mat-radio-group aria-label="Select an option" [(ngModel)]="form.role" name="role">
+                <mat-radio-button id="userRadio" value="user" required="required"> User </mat-radio-button> &nbsp;
+                <mat-radio-button id="sellerRadio" value="seller" required="required">Seller </mat-radio-button> &nbsp;
+            </mat-radio-group> -->
+
+            <br>
+            <br>
+            <div class="text-right">
+                <button type="submit" style="
+                background-color: #3034A0;
+                border-radius: 5px;
+                text-decoration-color:#FFFFFF;
+                font-size: 20px;
+                font-weight: 500;
+                color: whitesmoke;
+                width: 106px;
+                height: 40px;
+                " [disabled]="!regForm.valid" id="registrationBtn" mat-raised-button>Register</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

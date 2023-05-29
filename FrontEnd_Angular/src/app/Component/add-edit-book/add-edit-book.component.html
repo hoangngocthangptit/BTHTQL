@@ -1,0 +1,104 @@
+<div mat-dialog-title>
+  <h1>Book Form</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <div class="col-7">
+      <div class="row">
+          <mat-form-field appearance="outline" class="col-6">
+              <mat-label> Tiêu đề <span style="color: red">*</span></mat-label>
+              <input matInput type="text" placeholder="." formControlName="title" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.title.errors }">
+              <div *ngIf="addFormSubmitted&&AddEditFrom.title.errors" class="invalid-feedback">
+                <div *ngIf="AddEditFrom.title.errors.required">nhập tiêu đề</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Tác giả <span style="color: red">*</span></mat-label>
+              <input matInput placeholder="nhập" formControlName="authorName" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.authorName.errors }">
+              <div *ngIf="addFormSubmitted&&AddEditFrom.authorName.errors" class="invalid-feedback">
+                <div *ngIf="AddEditFrom.authorName.errors.required">nhập tên tác giả</div>
+            </div>
+          </mat-form-field>
+
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Mô tả</mat-label>
+          <!-- <input matInput type="" placeholder="bookDetails" formControlName="bookDetails" [readonly]="!isEditing"> -->
+          <textarea matInput rows="4" type="" placeholder="bookDetails" formControlName="bookDetails"></textarea>
+      </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Số trang</mat-label>
+              <input matInput placeholder="Ex. 50" type="number" formControlName="noOfBooks">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Tên sách <span style="color: red">*</span></mat-label>
+
+            <input matInput type="bookName" placeholder="bookName"formControlName="bookName"  [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.bookName.errors }">
+            <div *ngIf="addFormSubmitted&&AddEditFrom.bookName.errors" class="invalid-feedback">
+              <div *ngIf="AddEditFrom.bookName.errors.required">nhập tên sách</div>
+          </div>
+        </mat-form-field>
+
+        </div>
+
+      <div class="row">
+          <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Thể loại</mat-label>
+              <mat-select formControlName="category">
+                  <mat-option *ngFor="let val of category" [value]="val">{{val}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Ngày phát hành <span style="color: red">*</span></mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="createdDate" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.createdDate.errors }">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <div *ngIf="addFormSubmitted&&AddEditFrom.createdDate.errors" class="invalid-feedback">
+              <div *ngIf="AddEditFrom.createdDate.errors.required">nhập ngày phát hành</div>
+          </div>
+        </mat-form-field>
+        </div>
+
+
+   </div>
+
+
+
+<div class="col-5">
+  <div class="card card-body border-0 shadow-sm mb-4">
+    <div class="d-flex align-items-center">
+      <div class="me-2">
+        <img class="rounded avatar-sm" style="max-width: 280px; max-height: 280px;margin-right: 15px;" src="{{imgUrl}}" alt="change avatar">
+      </div>
+      <div class="file-field">
+        <div class="d-flex justify-content-center ms-2">
+          <div class="d-flex align-items-center">
+            <!-- <svg class="icon icon-5 text-gray-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path>
+            </svg> -->
+            <input  type="file" (change)="onImageUpload($event)">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+  </div>
+
+
+  <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+  </div>
+
+</form>
+
+
