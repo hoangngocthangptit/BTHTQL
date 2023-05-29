@@ -76,7 +76,7 @@ export class KiLuatComponent implements OnInit {
     console.log("2", this.opened2);
   }
   openAddEditEmpForm(){}
-  displayedColumns: string[] = ['position','mieuTa', 'ten', 'thongTin', 'thaoTac'];
+  displayedColumns: string[] = ['position',, 'ten','mieuTa', 'thongTin', 'thaoTac'];
   dataSource = ELEMENT_DATA;
 
 }

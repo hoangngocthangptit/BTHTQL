@@ -20,7 +20,7 @@
           <mat-sidenav-content class="sidenav-content">
               <div >
                   <div class="w-full p-2 mb-3" style="text-align: center;">
-                 <h2> Bảng danh sách nhân viên</h2>
+                 <h2> Bảng danh sách</h2>
                   </div>
 
                   <div>
@@ -33,53 +33,44 @@
                           </button> -->
 
                           <button  class="btn btn-primary" (click)="openAddEditEmpForm()">
-                            Thêm nhân viên
+                            Thêm chức vụ
                           </button>
                       </div>
 
                   </div>
 
                   <table mat-table [dataSource]="dataSource">
+
                       <ng-container matColumnDef="position">
                           <th mat-header-cell *matHeaderCellDef style="width: 4%;"> STT </th>
                           <td mat-cell *matCellDef="let row; let i = index">
                               {{ i + 1 }}
                           </td>
                       </ng-container>
-
-                      <ng-container matColumnDef="bookName">
-                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Họ</th>
-                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.ho}} </td>
+                      <ng-container matColumnDef="ten">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tên chức vụ</th>
+                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.ten}} </td>
+                    </ng-container>
+                      <ng-container matColumnDef="mieuTa">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Miêu tả</th>
+                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.mieuTa}} </td>
                     </ng-container>
                       <!-- Position Column -->
-                      <ng-container matColumnDef="authorName">
-                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tên</th>
-                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.ten}} </td>
-                      </ng-container>
-                      <ng-container matColumnDef="title">
-                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Email</th>
-                          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+
+                      <ng-container matColumnDef="heSo">
+                          <th mat-header-cell *matHeaderCellDef style="text-align: center;">Hệ số lương</th>
+                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.heSo}} </td>
                       </ng-container>
 
-                      <ng-container matColumnDef="no">
-                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Chức vụ</th>
-                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.chucVu}} </td>
-                      </ng-container>
-                      <ng-container matColumnDef="noOfBooks">
-                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Địa chỉ</th>
-                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.diaChi}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="createdDate">
-                      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ngày vào làm</th>
-                      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.ngayBatDau | date:'dd/MM/yyyy'}} </td>
-                  </ng-container>
+                      <!-- Symbol Column -->
+
                       <ng-container matColumnDef="thaoTac">
                           <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center; width: 10%;"> Thao tác
                           </th>
                           <td mat-cell *matCellDef="let row; let i = index" class="cell-button" style="  text-align: center;">
                             <div style="display: flex;">
 
-                              <ul matTooltip="xem thông tin" href="javascript:void(0)" (click)="openEditForm(row)">
+                              <ul matTooltip="xem thông tin" href="javascript:void(0)" (click)="openEditForm()">
                                 <i class='fa fa-eye' style="font-size:24px ;color:#000080"></i>
                             </ul>
                               <ul matTooltip="Xóa tài khoản" href="javascript:void(0)" (click)="deleteDilag(row.bookId)">

@@ -111,6 +111,10 @@ export class SidenavbarComponent implements OnInit {
   {
     this.router.navigate(['khen-thuong'],{queryParams:{book:'books'}});
   }
+  chuc()
+  {
+    this.router.navigate(['chuc-vu'],{queryParams:{book:'books'}});
+  }
   phat()
   {
     this.router.navigate(['ki-luat'],{queryParams:{book:'books'}});

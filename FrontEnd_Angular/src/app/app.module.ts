@@ -76,6 +76,9 @@ import { HomeViewComponent } from './Component/home-view/home-view.component';
 import { DepartmentComponent } from './IUHR/department/department.component';
 import { KhenThuongComponent } from './IUHR/khen-thuong/khen-thuong.component';
 import { KiLuatComponent } from './IUHR/ki-luat/ki-luat.component';
+import { ChucVuComponent } from './IUHR/chuc-vu/chuc-vu.component';
+import { EditAddPersonComponent } from './IUHR/edit-add-person/edit-add-person.component';
+import { EditPersonComponent } from './IUHR/edit-person/edit-person.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -127,6 +130,9 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     DepartmentComponent,
     KhenThuongComponent,
     KiLuatComponent,
+    ChucVuComponent,
+    EditAddPersonComponent,
+    EditPersonComponent,
 
 
 

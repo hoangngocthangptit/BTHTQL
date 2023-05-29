@@ -13,28 +13,27 @@ import { Router } from "@angular/router";
 import { log } from "console";
 
 export interface PeriodicElement {
-  mieuTa: string;
   position: number;
   ten: string;
-  thongTin: string;
+  mieuTa: string;
+  heSo: string;
 
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, mieuTa: 'svfd', ten:'ffd', thongTin: 'H'},
-  {position: 2, mieuTa: 'svfd', ten:'ffd', thongTin: 'H'},
-  {position: 3, mieuTa: 'svfd', ten:'ffd', thongTin: 'H'},
-  {position: 4, mieuTa: 'svfd', ten:'ffd', thongTin: 'H'},
+  {position: 1, mieuTa: 'svfd', ten:'ffd', heSo: 'H'},
+  {position: 2, mieuTa: 'svfd', ten:'ffd', heSo: 'H'},
+  {position: 3, mieuTa: 'svfd', ten:'ffd', heSo: 'H'},
+  {position: 4, mieuTa: 'svfd', ten:'ffd', heSo: 'H'},
 
 
 ];
 @Component({
-  selector: 'app-department',
-  templateUrl: './department.component.html',
-  styleUrls: ['./department.component.scss']
+  selector: 'app-chuc-vu',
+  templateUrl: './chuc-vu.component.html',
+  styleUrls: ['./chuc-vu.component.scss']
 })
-
-export class DepartmentComponent implements OnInit {
+export class ChucVuComponent implements OnInit {
 
   constructor(    private titleService: Title,
     private dialog: MatDialog,
@@ -79,6 +78,7 @@ export class DepartmentComponent implements OnInit {
     console.log("2", this.opened2);
   }
   openAddEditEmpForm(){}
-  displayedColumns: string[] = ['position', 'ten','mieuTa', 'thongTin', 'thaoTac'];
+  displayedColumns: string[] = ['position', 'ten','mieuTa', 'heSo', 'thaoTac'];
   dataSource = ELEMENT_DATA;
 }
+

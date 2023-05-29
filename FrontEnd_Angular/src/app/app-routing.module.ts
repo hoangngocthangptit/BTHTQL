@@ -30,6 +30,7 @@ import { HomeViewComponent } from './Component/home-view/home-view.component';
 import { DepartmentComponent } from './IUHR/department/department.component';
 import { KiLuatComponent } from './IUHR/ki-luat/ki-luat.component';
 import { KhenThuongComponent } from './IUHR/khen-thuong/khen-thuong.component';
+import { ChucVuComponent } from './IUHR/chuc-vu/chuc-vu.component';
 
 const routes: Routes = [
 
@@ -37,6 +38,7 @@ const routes: Routes = [
     path: '', redirectTo: 'chart',
     pathMatch: 'full'
   },
+  {path: 'chuc-vu', component: ChucVuComponent},
   {path: 'khen-thuong', component: KhenThuongComponent},
   {path: 'ki-luat', component: KiLuatComponent},
   {path: 'department', component: DepartmentComponent},
