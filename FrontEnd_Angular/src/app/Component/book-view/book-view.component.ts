@@ -65,7 +65,7 @@ export class BookViewComponent implements OnInit {
   ngOnInit(): void {
     this.doSearh();
     this.role = localStorage.getItem("role");
-    this.setTitle("Bookstore");
+    this.setTitle("HR");
     console.log("role check toolbar", this.role);
     if (this.role === "admin") {
       this.isAdmin = true;

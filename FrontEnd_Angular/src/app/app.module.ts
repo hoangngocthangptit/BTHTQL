@@ -72,6 +72,10 @@ import { EditBookviewComponent } from './Component/edit-bookview/edit-bookview.c
 import { ListPersonnelComponent } from './IUHR/list-personnel/list-personnel.component';
 import { ListPaycheckComponent } from './IUHR/list-paycheck/list-paycheck.component';
 import { ListTimekeepingComponent } from './IUHR/list-timekeeping/list-timekeeping.component';
+import { HomeViewComponent } from './Component/home-view/home-view.component';
+import { DepartmentComponent } from './IUHR/department/department.component';
+import { KhenThuongComponent } from './IUHR/khen-thuong/khen-thuong.component';
+import { KiLuatComponent } from './IUHR/ki-luat/ki-luat.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -119,6 +123,10 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     ListPersonnelComponent,
     ListPaycheckComponent,
     ListTimekeepingComponent,
+    HomeViewComponent,
+    DepartmentComponent,
+    KhenThuongComponent,
+    KiLuatComponent,
 
 
 

@@ -26,13 +26,21 @@ import { BookViewComponent } from './Component/book-view/book-view.component';
 import { ListPaycheckComponent } from './IUHR/list-paycheck/list-paycheck.component';
 import { ListPersonnelComponent } from './IUHR/list-personnel/list-personnel.component';
 import { ListTimekeepingComponent } from './IUHR/list-timekeeping/list-timekeeping.component';
+import { HomeViewComponent } from './Component/home-view/home-view.component';
+import { DepartmentComponent } from './IUHR/department/department.component';
+import { KiLuatComponent } from './IUHR/ki-luat/ki-luat.component';
+import { KhenThuongComponent } from './IUHR/khen-thuong/khen-thuong.component';
 
 const routes: Routes = [
 
   {
-    path: '', redirectTo: 'book_view',
+    path: '', redirectTo: 'chart',
     pathMatch: 'full'
   },
+  {path: 'khen-thuong', component: KhenThuongComponent},
+  {path: 'ki-luat', component: KiLuatComponent},
+  {path: 'department', component: DepartmentComponent},
+  {path: 'home_view', component: HomeViewComponent},
   {path: 'pay_view', component: ListPaycheckComponent},
   {path: 'per_view', component: ListPersonnelComponent},
   {path: 'time_view', component: ListTimekeepingComponent},

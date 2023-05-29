@@ -20,7 +20,7 @@ export class ChartComponent implements OnInit {
   count3: number;
   isUser = false;
   isSeller = false;
-  isAdmin = false;
+  isAdmin = true;
   orderedBooks: any;
   dataTemp: any[] = [];
   orderdetails = new Array<any>();
@@ -29,7 +29,7 @@ export class ChartComponent implements OnInit {
   price4: number;
   dataPrice: any= [];
   dataSl: any = [
-   
+
   ];
   dataQuanlity: any= [
     // { label: "Jan", y: 12 },
@@ -86,7 +86,7 @@ export class ChartComponent implements OnInit {
     animationEnabled: true,
     theme: "light2",
     title: {
-      text: "Phân tích doanh thu",
+      text: "Phân tích lương",
     },
     axisY: {
       title: "Số lượng đơn đặt hàng",
@@ -148,15 +148,8 @@ export class ChartComponent implements OnInit {
       this.isAdmin = true;
       this.isLogin = true;
     }
-    if (this.role === "seller") {
-      this.isSeller = true;
-      this.isLogin = true;
-    }
-    if (this.role === "user") {
-      this.isUser = true;
-      this.isLogin = true;
-    }
-  
+
+
   }
 
   nameEventHander($event: any) {
@@ -205,7 +198,7 @@ export class ChartComponent implements OnInit {
   }
   doExport1() {
     let headerTTThietHai: any[] = ["STT", "Tháng", "Số lượng đơn"];
- 
+
     let keyTTThietHai: any[] = ["TT", "thang", "SL"];
 
     let dataTemp: any[] = [];
@@ -243,7 +236,7 @@ export class ChartComponent implements OnInit {
     console.log("order status api called");
     this.adminservice.getAllOrderedBooks().subscribe((response) => {
       this.orderedBooks = response.obj;
-    
+
 
       for (let i = 0; i < response.obj.length; i++) {
         var p = {
@@ -315,7 +308,7 @@ export class ChartComponent implements OnInit {
             x12+=this.orderdetails[i].totalprice;
             p12+=this.orderdetails[i].quantityOfBook
           }
-          
+
       }
       var data= [
         { label: "Jan", y: x1 },

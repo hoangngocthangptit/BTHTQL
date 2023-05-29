@@ -1,0 +1,109 @@
+<div style="width: 100%;" style="height: 11%;">
+  <app-toolbar flexLayout="row" (toggleEvent)="nameEventHander($event)">
+  </app-toolbar>
+  <!-- <app-toolbar flexLayout="row"></app-toolbar> -->
+</div>
+<div class="dashboard-content" style="height: 84%; margin-left: 0%; padding-left: 0%;">
+  <div class="sidenav-div">
+      <mat-sidenav-container class="sidenav-container">
+          <mat-sidenav [(opened)]="opened2" mode="side" class="matSidenav">
+              <app-sidenavbar class="app-sidenavbar" fxFlex></app-sidenavbar>
+          </mat-sidenav>
+          <!-- <div class="container" *ngIf="isAdmin">
+            <div style="margin-left: 6px;">
+              <img style="height: 125px; width: 144px;margin-left: -11px ;" class="topic-avatar" mat-card-avatar src="assets\profilePic.jpg" />
+          </div>
+          <div style="height: 60px; width: 60px; padding: 0px; margin: 0px;" *ngIf="isLogin">
+              <h4 style="font-weight: bold; margin: 0 43px;">{{name}}</h4>
+          </div>
+          </div> -->
+          <mat-sidenav-content class="sidenav-content">
+              <div >
+                  <div class="w-full p-2 mb-3" style="text-align: center;">
+                 <h2> Bảng danh sách</h2>
+                  </div>
+
+                  <div>
+                      <div class="col-12 pl-0 mb-2" style="width: 100%;">
+                          <!-- <button mat-raised-button [color]="'primary'" class="ml-6 button-create evn-bg-blue" (click)="doSearh()" style="border-radius: 10px;"> -->
+                              <!-- <i class="fa fa-search"></i> -->
+                              <!-- <span>Tim kiếm</span> -->
+                              <!-- <span class="mr-1">Tìm kiếm</span>
+
+                          </button> -->
+
+                          <button  class="btn btn-primary" (click)="openAddEditEmpForm()">
+                            Thêm mục khen thưởng
+                          </button>
+                      </div>
+
+                  </div>
+
+                  <table mat-table [dataSource]="dataSource">
+
+                      <ng-container matColumnDef="position">
+                          <th mat-header-cell *matHeaderCellDef style="width: 4%;"> STT </th>
+                          <td mat-cell *matCellDef="let row; let i = index">
+                              {{ i + 1 }}
+                          </td>
+                      </ng-container>
+                      <ng-container matColumnDef="createdDate">
+                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ngày phát hành</th>
+                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.createdDate | date:'dd/MM/yyyy'}} </td>
+                      </ng-container>
+
+                      <!-- Position Column -->
+                      <ng-container matColumnDef="ten">
+                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tên </th>
+                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.ten}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="thongTin">
+                          <th mat-header-cell *matHeaderCellDef style="text-align: center;">Mục Thưởng</th>
+                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.mucThuong}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="mieuTa">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Miêu tả</th>
+                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.mieuTa}} </td>
+                    </ng-container>
+                      <!-- Symbol Column -->
+
+                      <ng-container matColumnDef="thaoTac">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center; width: 10%;"> Thao tác
+                          </th>
+                          <td mat-cell *matCellDef="let row; let i = index" class="cell-button" style="  text-align: center;">
+                            <div style="display: flex;">
+
+                              <ul matTooltip="xem thông tin" href="javascript:void(0)" (click)="openEditForm()">
+                                <i class='fa fa-eye' style="font-size:24px ;color:#000080"></i>
+                            </ul>
+                              <ul matTooltip="Xóa tài khoản" href="javascript:void(0)" (click)="deleteDilag(row.bookId)">
+                                  <i class='fa fa-trash' style="font-size:24px ;color:#000080"></i>
+                              </ul>
+                          </div>
+                          </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+                      <tr class="mat-row" *matNoDataRow>
+                          <td class="mat-cell font-semibold" *ngIf="!dataSource || dataSource; else emptyResult" colspan="12" style="text-align: center;font-weight: bold">
+                              Không tìm thấy kết quả phù hợp với từ khóa
+                          </td>
+                          <ng-template #emptyResult>
+                              <td class="mat-cell" colspan="12">
+                                  <!-- Không tìm thấy kết quả phù hợp với từ khóa "{{
+                                  input.value
+                                  }}" -->
+                                  Không tìm thấy kết quả phù hợp với từ khóa !
+                              </td>
+                          </ng-template>
+                      </tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[10,25,50,100]" showFirstLastButtons [pageSize]="pageSize" [length]="totalItems" (page)=" onChangePage($event)"></mat-paginator>
+              </div>
+
+          </mat-sidenav-content>
+      </mat-sidenav-container>
+  </div>
+
+</div>

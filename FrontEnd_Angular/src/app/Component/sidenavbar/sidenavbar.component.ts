@@ -98,6 +98,7 @@ export class SidenavbarComponent implements OnInit {
   {
     this.router.navigate(['per_view'],{queryParams:{book:'books'}});
   }
+
   pay()
   {
     this.router.navigate(['pay_view'],{queryParams:{book:'books'}});
@@ -105,6 +106,18 @@ export class SidenavbarComponent implements OnInit {
   time()
   {
     this.router.navigate(['time_view'],{queryParams:{book:'books'}});
+  }
+  khen()
+  {
+    this.router.navigate(['khen-thuong'],{queryParams:{book:'books'}});
+  }
+  phat()
+  {
+    this.router.navigate(['ki-luat'],{queryParams:{book:'books'}});
+  }
+  department()
+  {
+    this.router.navigate(['department'],{queryParams:{book:'books'}});
   }
 
   User(){
