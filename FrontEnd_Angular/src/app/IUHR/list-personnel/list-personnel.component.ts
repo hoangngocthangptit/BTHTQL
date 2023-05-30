@@ -124,7 +124,7 @@ export class ListPersonnelComponent implements OnInit {
   }
   doSearh() {
 
-    this.userService.getEmployeeList().subscribe((res:any) => {
+    this.userService.listLuong().subscribe((res:any) => {
       this.dataSource = res.obj;
       // this.totalItems=res.total;
     });

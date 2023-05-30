@@ -1,1 +1,116 @@
-<p>edit-add-person works!</p>
+<div mat-dialog-title>
+  <h1>Thông tin nhân viên</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <div class="col-7">
+      <div class="row">
+          <mat-form-field appearance="outline" class="col-6">
+              <mat-label> Họ <span style="color: red">*</span></mat-label>
+              <input matInput type="text" placeholder="." formControlName="ho" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.ho.errors }">
+              <div *ngIf="addFormSubmitted&&AddEditFrom.ho.errors" class="invalid-feedback">
+                <div *ngIf="AddEditFrom.ho.errors.required">nhập họ</div>
+            </div>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Tên <span style="color: red">*</span></mat-label>
+              <input matInput placeholder="nhập" formControlName="ten" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.ten.errors }">
+              <div *ngIf="addFormSubmitted&&AddEditFrom.ten.errors" class="invalid-feedback">
+                <div *ngIf="AddEditFrom.ten.errors.required">Tên</div>
+            </div>
+          </mat-form-field>
+
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Email</mat-label>
+          <!-- <input matInput type="" placeholder="bookDetails" formControlName="bookDetails" [readonly]="!isEditing"> -->
+          <input matInput  type="" placeholder="email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-label>Phòng ban</mat-label>
+        <div class="form-group">
+          <mat-select formControlName="chucVu">
+            <mat-option *ngFor="let val of listPhongBan" [value]="val.id">{{val.name}}
+            </mat-option>
+        </mat-select>
+      </div>
+    </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Địa Chỉ</mat-label>
+              <input matInput placeholder="Ex. 50" formControlName="diaChi">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Giới tính <span style="color: red">*</span></mat-label>
+
+            <input matInput type="bookName" placeholder="bookName"formControlName="gioiTinh"  [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.gioiTinhrrors }">
+            <div *ngIf="addFormSubmitted&&AddEditFrom.gioiTinh.errors" class="invalid-feedback">
+              <div *ngIf="AddEditFrom.gioiTinh.errors.required">nhập giới tính</div>
+          </div>
+        </mat-form-field>
+
+        </div>
+
+      <div class="row">
+          <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Chức vụ</mat-label>
+              <div class="form-group">
+                <mat-select formControlName="chucVu">
+                  <mat-option *ngFor="let val of listChucVu " [value]="val.id">{{val.name}}
+                  </mat-option>
+              </mat-select>
+            </div>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Ngày bắt đầu <span style="color: red">*</span></mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="ngayBatDau" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.ngayBatDau.errors }">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <div *ngIf="addFormSubmitted&&AddEditFrom.ngayBatDau.errors" class="invalid-feedback">
+              <div *ngIf="AddEditFrom.ngayBatDau.errors.required">nhập ngày phát hành</div>
+          </div>
+        </mat-form-field>
+        </div>
+
+
+   </div>
+
+
+
+<div class="col-5">
+  <div class="card card-body border-0 shadow-sm mb-4">
+    <div class="d-flex align-items-center">
+      <div class="me-2">
+        <img class="rounded avatar-sm" style="max-width: 280px; max-height: 280px;margin-right: 15px;" src="{{imgUrl}}" alt="change avatar">
+      </div>
+      <div class="file-field">
+        <div class="d-flex justify-content-center ms-2">
+          <div class="d-flex align-items-center">
+            <!-- <svg class="icon icon-5 text-gray-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path>
+            </svg> -->
+            <input  type="file" (change)="onImageUpload($event)">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+  </div>
+
+
+  <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+  </div>
+
+</form>
+
+
+

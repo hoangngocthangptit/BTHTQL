@@ -24,7 +24,7 @@ public class ChamCongController {
     @GetMapping("")
     public ResponseEntity<Response> get() {
         List<ChamCong> books = (List<ChamCong>) nhanVienRepo.findAll();
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Nhan vien",200, books));
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Cham cong",200, books));
     }
 
 }
