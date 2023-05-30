@@ -21,8 +21,56 @@ public class NhanVienController {
     private NhanVienRepo nhanVienRepo;
 
     @GetMapping("")
-    public ResponseEntity<Response> getBooks() {
+    public ResponseEntity<Response> getPerson() {
         List<NhanVien> books = (List<NhanVien>) nhanVienRepo.findAll();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Nhan vien",200, books));
+    }
+
+    //
+//
+    @PutMapping("/{id}")
+    public ResponseEntity<Response> edit(@PathVariable("id") long id,@ModelAttribute NhanVien nv,@RequestHeader("token") String token) throws IOException {
+        NhanVien information=nhanVienRepo.findById(id).get();
+
+        if(nv.getNgayBatDau() != null){
+            information.setNgayBatDau(nv.getNgayBatDau());
+        }
+        if(nv.getImageFile() != null) {
+            information.setImage(nv.getImageFile().getOriginalFilename());
+        }
+        information.setDiaChi(nv.getDiaChi());
+        information.setEmail(nv.getEmail());
+        information.setGioiTinh(nv.getGioiTinh());
+        information.setTen(nv.getTen());
+        information.setHo(nv.getHo());
+        information.setQuocTich(nv.getQuocTich());
+        information.setImage(nv.getImageFile().getOriginalFilename());
+        information.setIdChucVu(nv.getIdChucVu());
+        information.setIdPhongBan(nv.getIdPhongBan());
+        information.setListBaoHiem(nv.getListBaoHiem());
+        information.setImageFile(null);
+        nhanVienRepo.save(information);
+        if(information!=null)
+            return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Nhan vien details are",200,information));
+        return null;
+    }
+    //
+    @PostMapping("")
+    public ResponseEntity<Response> addPerson(@ModelAttribute NhanVien nv) throws IOException {
+        String imageName = nv.getImageFile().getOriginalFilename();
+        nv.setImage(imageName);
+        CopyFile.saveFiles(nv.getImage(), nv.getImageFile());
+       nv.setImageFile(null);
+       nhanVienRepo.save(nv);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Response("person Added Successfully..",200,nv));
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> deleteBook(@PathVariable long id, @RequestHeader("token") String token) {
+        NhanVien book=nhanVienRepo.findById(id).get();
+        nhanVienRepo.deleteById(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("delete person",200,book));
+
     }
 }

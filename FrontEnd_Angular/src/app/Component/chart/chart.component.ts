@@ -89,7 +89,7 @@ export class ChartComponent implements OnInit {
       text: "Phân tích lương",
     },
     axisY: {
-      title: "Số lượng đơn đặt hàng",
+      title: "khen thưởng",
       includeZero: true,
     },
     axisY2: {

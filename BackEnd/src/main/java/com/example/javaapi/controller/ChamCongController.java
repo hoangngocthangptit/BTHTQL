@@ -22,8 +22,9 @@ public class ChamCongController {
     @Autowired private ChamCongRepo nhanVienRepo;
 
     @GetMapping("")
-    public ResponseEntity<Response> getBooks() {
+    public ResponseEntity<Response> get() {
         List<ChamCong> books = (List<ChamCong>) nhanVienRepo.findAll();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Nhan vien",200, books));
     }
+
 }

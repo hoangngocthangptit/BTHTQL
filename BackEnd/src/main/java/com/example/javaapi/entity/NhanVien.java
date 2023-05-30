@@ -1,9 +1,11 @@
 package com.example.javaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -53,6 +55,10 @@ public class NhanVien {
             joinColumns = @JoinColumn(name = "id_nhan_vien"),
             inverseJoinColumns = @JoinColumn(name = "id_ky_luat"))
     List<KyLuat> listKyLuat;
+    private String image;
+    @JsonIgnore
+    @Transient
+    private MultipartFile imageFile;
 
 
 
