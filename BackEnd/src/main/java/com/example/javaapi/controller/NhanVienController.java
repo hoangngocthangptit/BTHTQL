@@ -1,8 +1,13 @@
 package com.example.javaapi.controller;
 
+import com.example.javaapi.dto.NhanVienDTO;
 import com.example.javaapi.entity.Book;
+import com.example.javaapi.entity.ChucVu;
 import com.example.javaapi.entity.NhanVien;
+import com.example.javaapi.entity.PhongBan;
+import com.example.javaapi.repository.ChucVuRepo;
 import com.example.javaapi.repository.NhanVienRepo;
+import com.example.javaapi.repository.PhongBanRepo;
 import com.example.javaapi.response.Response;
 import com.example.javaapi.service.BookService;
 import com.example.javaapi.until.CopyFile;
@@ -19,6 +24,10 @@ import java.util.List;
 public class NhanVienController {
     @Autowired
     private NhanVienRepo nhanVienRepo;
+    @Autowired
+    private PhongBanRepo phongBanRepo;
+    @Autowired
+    private ChucVuRepo chucVuRepo;
 
     @GetMapping("")
     public ResponseEntity<Response> getPerson() {
@@ -56,12 +65,24 @@ public class NhanVienController {
     }
     //
     @PostMapping("")
-    public ResponseEntity<Response> addPerson(@ModelAttribute NhanVien nv) throws IOException {
+    public ResponseEntity<Response> addPerson(@ModelAttribute NhanVienDTO nv) throws IOException {
         String imageName = nv.getImageFile().getOriginalFilename();
-        nv.setImage(imageName);
-        CopyFile.saveFiles(nv.getImage(), nv.getImageFile());
+        NhanVien nhanVien=new NhanVien();
+        nhanVien.setImage(imageName);
+        nhanVien.setDiaChi(nv.getDiaChi());
+        nhanVien.setEmail(nv.getEmail());
+        nhanVien.setGioiTinh(nv.getGioiTinh());
+        nhanVien.setTen(nv.getTen());
+        nhanVien.setHo(nv.getHo());
+        nhanVien.setQuocTich(nv.getQuocTich());
+        ChucVu chucVu=chucVuRepo.findById(nv.getIdChucVu()).get();
+        PhongBan phongBan=phongBanRepo.findById(nv.getIdPhongBan()).get();
+        nhanVien.setIdPhongBan(phongBan);
+        nhanVien.setIdChucVu(chucVu);
+        nhanVien.setNgayBatDau(nv.getNgayBatDau());
+        CopyFile.saveFiles(nhanVien.getImage(), nv.getImageFile());
        nv.setImageFile(null);
-       nhanVienRepo.save(nv);
+       nhanVienRepo.save(nhanVien);
         return ResponseEntity.status(HttpStatus.CREATED).body(new Response("person Added Successfully..",200,nv));
 
     }

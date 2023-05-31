@@ -31,7 +31,7 @@
       <mat-form-field appearance="outline" class="col-6">
         <mat-label>Phòng ban</mat-label>
         <div class="form-group">
-          <mat-select formControlName="chucVu">
+          <mat-select formControlName="phongBan">
             <mat-option *ngFor="let val of listPhongBan" [value]="val.id">{{val.name}}
             </mat-option>
         </mat-select>

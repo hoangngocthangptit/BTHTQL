@@ -88,7 +88,8 @@ export class EditAddPersonComponent implements OnInit {
         formData.append('diaChi', this.empForm.value.diaChi);
         formData.append('ngayBatDau', this.empForm.value.ngayBatDau);
         formData.append('quocTich', this.empForm.value.quocTich);
-        formData.append('chucVu', this.empForm.value.quocTich);
+        formData.append('idChucVu', this.empForm.value.chucVu);
+        formData.append('idPhongBan', this.empForm.value.phongBan);
 
 
 
