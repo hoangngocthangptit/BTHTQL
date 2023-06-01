@@ -18,5 +18,17 @@
   margin-right: 10px !important;
   margin-top: 15px !important;
 }
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-
+.board1 {
+  background-color: blue; // Màu nền xanh cho phần tử cha
+}
+.board2 {
+  background-color: rgb(255, 115, 0); // Màu nền xanh cho phần tử cha
+}
+.board3 {
+  background-color: rgb(255, 0, 0); // Màu nền xanh cho phần tử cha
+}
+.board4 {
+  background-color: rgb(0, 255, 106); // Màu nền xanh cho phần tử cha
+}

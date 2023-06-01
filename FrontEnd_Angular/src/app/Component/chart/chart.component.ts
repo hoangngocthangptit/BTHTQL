@@ -142,8 +142,7 @@ export class ChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = localStorage.getItem("role");
-    this.setTitle("Bookstore");
-    this.getallUserOrderedBooks();
+    this.setTitle("QuanLiNhanSu");
     if (this.role === "admin") {
       this.isAdmin = true;
       this.isLogin = true;

@@ -66,7 +66,7 @@ export class ListPersonnelComponent implements OnInit {
   ngOnInit(): void {
     this.doSearh();
     this.role = localStorage.getItem("role");
-    this.setTitle("HR");
+    this.setTitle("QuanLiNhanSu");
     console.log("role check toolbar", this.role);
     if (this.role === "admin") {
       this.isAdmin = true;

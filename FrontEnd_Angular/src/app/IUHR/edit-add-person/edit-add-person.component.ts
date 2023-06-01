@@ -40,11 +40,6 @@ export class EditAddPersonComponent implements OnInit {
         image:'',
         chucVu:'',
         phongBan:''
-        // gender: '',
-        // education: '',
-        // company: '',
-        // experience: '',
-        // package: '',
       });
     }
     isLogin = true;
@@ -78,18 +73,21 @@ export class EditAddPersonComponent implements OnInit {
 
     getData = () => {
 
-      let data = new FormData();
       var formData = new FormData();
+      if(this.uploadedImage){
         formData.append('imageFile', this.uploadedImage); // Thay thế $scope.media bằng giá trị của tập tin hình ảnh
+      } // Thay thế $scope.media bằng giá trị của tập tin hình ảnh
         formData.append('ho', this.empForm.value.ho);
         formData.append('ten', this.empForm.value.ten);
         formData.append('email', this.empForm.value.email);
         formData.append('gioiTinh', this.empForm.value.gioiTinh);
         formData.append('diaChi', this.empForm.value.diaChi);
-        formData.append('ngayBatDau', this.empForm.value.ngayBatDau);
         formData.append('quocTich', this.empForm.value.quocTich);
         formData.append('idChucVu', this.empForm.value.chucVu);
         formData.append('idPhongBan', this.empForm.value.phongBan);
+              if(typeof(this.empForm.value.ngayBatDau) != 'string'){
+          formData.append('ngayBatDau', this.empForm.value.ngayBatDau);
+        }
 
 
 
@@ -108,6 +106,20 @@ export class EditAddPersonComponent implements OnInit {
 
           // cap nhat list trong giao dien
           // cap nhat trong db
+          if (this.data) {
+            this.bookService
+          .updateEmployee(this.data.id, this.empForm.value)
+          .subscribe({
+            next: (val: any) => {
+              this._coreService.openSnackBar('Employee detail updated!');
+              this._dialogRef.close(true);
+            },
+            error: (err: any) => {
+              console.error(err);
+            },
+          });
+          }
+          else{
           (await this.bookService.addEmployee(formData)).subscribe({
             next: (val: any) => {
               this._coreService.openSnackBar('thêm mới thành công');
@@ -117,6 +129,7 @@ export class EditAddPersonComponent implements OnInit {
               console.error(err);
             },
           });
+        }
 
       }
 

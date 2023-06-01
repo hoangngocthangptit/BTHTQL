@@ -38,7 +38,7 @@ public class NhanVienController {
     //
 //
     @PutMapping("/{id}")
-    public ResponseEntity<Response> edit(@PathVariable("id") long id,@ModelAttribute NhanVien nv,@RequestHeader("token") String token) throws IOException {
+    public ResponseEntity<Response> edit(@PathVariable("id") long id,@ModelAttribute NhanVien nv) throws IOException {
         NhanVien information=nhanVienRepo.findById(id).get();
 
         if(nv.getNgayBatDau() != null){
@@ -53,11 +53,11 @@ public class NhanVienController {
         information.setTen(nv.getTen());
         information.setHo(nv.getHo());
         information.setQuocTich(nv.getQuocTich());
-        information.setImage(nv.getImageFile().getOriginalFilename());
         information.setIdChucVu(nv.getIdChucVu());
         information.setIdPhongBan(nv.getIdPhongBan());
         information.setListBaoHiem(nv.getListBaoHiem());
-        information.setImageFile(null);
+        CopyFile.saveFiles(information.getImage(), nv.getImageFile());
+        nv.setImageFile(null);
         nhanVienRepo.save(information);
         if(information!=null)
             return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Nhan vien details are",200,information));
@@ -69,6 +69,7 @@ public class NhanVienController {
         String imageName = nv.getImageFile().getOriginalFilename();
         NhanVien nhanVien=new NhanVien();
         nhanVien.setImage(imageName);
+        nhanVien.setEmail(nv.getEmail());
         nhanVien.setDiaChi(nv.getDiaChi());
         nhanVien.setEmail(nv.getEmail());
         nhanVien.setGioiTinh(nv.getGioiTinh());

@@ -28,7 +28,7 @@ export class LoginComponentComponent implements OnInit {
               private toastr: ToastrService,
               private titleService: Title
     ) {
-      this.setTitle('Bookstore | Login');
+      this.setTitle('QuanLiNhanSu | Login');
 
   }
   handleError(error: { error: any; }) {

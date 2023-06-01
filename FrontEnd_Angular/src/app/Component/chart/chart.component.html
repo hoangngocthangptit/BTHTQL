@@ -13,13 +13,74 @@
 
       <mat-sidenav-content class="sidenav-content">
 
-        <div>
-          <div>
+
+          <!-- <div>
             <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-          </div>
-          <div class="row">
-            <div class="col-9">
-              <mat-card style="width: 40%">
+          </div> -->
+
+          <div class="row mb-4 mt-4 col-12">
+
+            <div class="col-xl-3 col-sm-6 col-12">
+              <div class="card board1">
+                <div class="card-body">
+                  <div class="card_widget_header">
+                    <label>Employees</label>
+                    <h4>700</h4>
+                  </div>
+                  <div class="card_widget_img">
+                    <img src="assets/dash1.png" alt="card-img" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card board2 fill2 ">
+            <div class="card-body">
+            <div class="card_widget_header">
+            <label>Companies</label>
+            <h4>30</h4>
+            </div>
+            <div class="card_widget_img">
+            <img src="assets/dash2.png" alt="card-img" />
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card board3 fill3 ">
+            <div class="card-body">
+            <div class="card_widget_header">
+            <label>Leaves</label>
+            <h4>9</h4>
+            </div>
+            <div class="card_widget_img">
+            <img src="assets/dash3.png" alt="card-img" />
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card board4 fill4 ">
+            <div class="card-body">
+            <div class="card_widget_header">
+            <label>Salary</label>
+            <h4>$5.8M</h4>
+            </div>
+            <div class="card_widget_img">
+            <img src="assets/dash4.png" alt="card-img" />
+            </div>
+            </div>
+            </div>
+            </div>
+        </div>
+
+
+
+          <div class="row col-12">
+            <div class="col-3">
+              <mat-card>
                 <mat-card-content>
                   <table class="flex-auto bordered" mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="stt">
@@ -42,8 +103,8 @@
                 </mat-card-content>
               </mat-card>
             </div>
-            <div class="col-9">
-              <mat-card style="width: 40% ;    margin: -664px 598px">
+            <div class="col-3">
+              <mat-card >
                 <mat-card-content>
                   <table class="flex-auto bordered" mat-table [dataSource]="dataSl">
                     <ng-container matColumnDef="stt">
@@ -67,23 +128,17 @@
                 </mat-card-content>
               </mat-card>
             </div>
-            <div class="col-9">
-              <mat-card style="margin: -579px 1176px;">
+            <div class="row col-6">
+
+              <mat-card>
                 <div>
                   <canvasjs-chart [options]="chartOptions1" [styles]="{width: '30%', height:'360px'}"></canvasjs-chart>
                 </div>
               </mat-card>
             </div>
+
           </div>
-          <div class="row">
-            <button (click)="doExport()"
-              style="width: 10rem;  color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);;     margin: 19px 141px;"
-              mat-button><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel bảng 1</button>
-            <button (click)="doExport1()"
-              style="width: 10rem;  color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);;     margin: 19px 300px;"
-              mat-button><i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất Excel bảng 2</button>
-          </div>
-        </div>
+
 
       </mat-sidenav-content>
     </mat-sidenav-container>

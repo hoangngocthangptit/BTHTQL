@@ -33,7 +33,7 @@
                           </button> -->
                           <!-- style="color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);" -->
 
-                          <button  class="btn btn-primary"style="color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);"(click)="openAddEditEmpForm()">
+                          <button  class="btn btn-primary"style="color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);"(click)="doExport()">
                             <i class="fa fa-file-excel-o" aria-hidden="true"></i>Xuất excel
                           </button>
                       </div>
@@ -78,6 +78,10 @@
                         <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Địa thoiGian</th>
                         <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.phieuLuongCol}} </td>
                     </ng-container>
+                    <ng-container matColumnDef="no1">
+                      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tên Nhân viên</th>
+                      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.idNhanVien.ten}} </td>
+                  </ng-container>
                     <ng-container matColumnDef="createdDate">
                       <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ngày thoiGian làm</th>
                       <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.thoiGian | date:'dd/MM/yyyy'}} </td>

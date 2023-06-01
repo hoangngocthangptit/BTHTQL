@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  
+
 
 
   opened = true;
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = localStorage.getItem('role');
-    this.setTitle('Bookstore');
+    this.setTitle('QuanLiNhanSu');
     console.log('role check toolbar', this.role);
     if (this.role === 'admin') {
      this.isAdmin = true;
