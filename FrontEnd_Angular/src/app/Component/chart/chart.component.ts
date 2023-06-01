@@ -32,18 +32,18 @@ export class ChartComponent implements OnInit {
 
   ];
   dataQuanlity: any= [
-    // { label: "Jan", y: 12 },
-    // { label: "Feb", y: 12 },
-    // { label: "Mar", y: 1233 },
-    // { label: "Apr", y: 122 },
-    // { label: "May", y: 222 },
-    // { label: "Jun", y: 33 },
-    // { label: "Jul", y: 1212 },
-    // { label: "Aug", y: 12 },
-    // { label: "Sep", y: 12 },
-    // { label: "Oct", y: 12 },
-    // { label: "Nov", y: 21 },
-    // { label: "Dec", y: 12 },
+    { label: "Jan", y: 923 },
+    { label: "Feb", y: 524},
+    { label: "Mar", y: 1233 },
+    { label: "Apr", y: 1224 },
+    { label: "May", y: 922 },
+    { label: "Jun", y: 932 },
+    { label: "Jul", y: 1021 },
+    { label: "Aug", y: 822 },
+    { label: "Sep", y: 1223 },
+    { label: "Oct", y: 724 },
+    { label: "Nov", y: 814 },
+    { label: "Dec", y: 612 },
   ];
   dataSource: any = [];
   displayedColumns: string[] = ["stt", "Thang", "Doanhthu"];
@@ -134,7 +134,7 @@ export class ChartComponent implements OnInit {
       {
         type: "spline",
         showInLegend: true,
-        name: "Số đơn đặt hàng",
+        name: "Tổng lương",
         dataPoints: this.dataQuanlity
       },
     ],
