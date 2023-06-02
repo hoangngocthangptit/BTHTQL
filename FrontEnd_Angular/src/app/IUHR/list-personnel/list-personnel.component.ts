@@ -45,6 +45,7 @@ export class ListPersonnelComponent implements OnInit {
     "bookName",
     "authorName",
     "no",
+    "no2",
     "noOfBooks",
     "createdDate",
     "thaoTac",

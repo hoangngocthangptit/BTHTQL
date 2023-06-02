@@ -1,2 +1,9 @@
-package com.example.javaapi.dto;public class PhieuLuongDTO {
+package com.example.javaapi.dto;
+
+import lombok.Data;
+
+@Data
+public class PhieuLuongDTO {
+    private Long idNhanVien;
+    private Double tongSoGioLam;
 }
