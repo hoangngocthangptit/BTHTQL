@@ -31,6 +31,7 @@ import { DepartmentComponent } from './IUHR/department/department.component';
 import { KiLuatComponent } from './IUHR/ki-luat/ki-luat.component';
 import { KhenThuongComponent } from './IUHR/khen-thuong/khen-thuong.component';
 import { ChucVuComponent } from './IUHR/chuc-vu/chuc-vu.component';
+import { BaoHiemComponent } from './IUHR/bao-hiem/bao-hiem.component';
 
 const routes: Routes = [
 
@@ -39,6 +40,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {path: 'chuc-vu', component: ChucVuComponent},
+  {path: 'bhxh', component: BaoHiemComponent},
   {path: 'khen-thuong', component: KhenThuongComponent},
   {path: 'ki-luat', component: KiLuatComponent},
   {path: 'department', component: DepartmentComponent},

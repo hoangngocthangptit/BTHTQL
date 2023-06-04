@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 import { DialalogDeleteComponent } from "src/app/Component/dialalog-delete/dialalog-delete.component";
 import { EditAddPersonComponent } from "../edit-add-person/edit-add-person.component";
 import { NhanVienService } from "src/app/Service/nhan-vien.service";
+import { EditPersonComponent } from "../edit-person/edit-person.component";
 
 export interface PeriodicElement {
   name: string;
@@ -44,7 +45,7 @@ export class ListPersonnelComponent implements OnInit {
     "position",
     "bookName",
     "authorName",
-    "no",
+   "no",
     "no2",
     "noOfBooks",
     "createdDate",
@@ -74,6 +75,8 @@ export class ListPersonnelComponent implements OnInit {
       this.isLogin = true;
     }
     this.dataSource.paginator = this.paginator;
+    console.log(this.dataSource);
+
 
   }
   nameEventHander($event: any) {

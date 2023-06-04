@@ -25,4 +25,10 @@ export class NhanVienService {
   chamCong(): Observable<any> {
     return this._http.get('http://localhost:8080/cham-cong');
   }
+  doanhThuThang(): Observable<any> {
+    return this._http.get('http://localhost:8080/phieu-luong/doanhThuThang');
+  }
+  doanhThuNam(): Observable<any> {
+    return this._http.get('http://localhost:8080/phieu-luong/doanhThuTheoNam');
+  }
 }

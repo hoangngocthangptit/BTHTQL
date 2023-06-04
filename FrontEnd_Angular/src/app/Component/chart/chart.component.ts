@@ -6,6 +6,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { formatDate } from "@angular/common";
 import { Excel, ExcelService } from "../../Service/excel.service";
 import { stringify } from "querystring";
+import { NhanVienService } from "src/app/Service/nhan-vien.service";
 
 @Component({
   selector: "app-chart",
@@ -46,18 +47,23 @@ export class ChartComponent implements OnInit {
     { label: "Dec", y: 612 },
   ];
   dataSource: any = [];
-  displayedColumns: string[] = ["stt", "Thang", "Doanhthu"];
-  discolum: string[] = ["stt", "Thang", "soDonhang"];
+  data1:any= [];
+  data2:any= [];
+  displayedColumns: string[] = ["stt", "Thang", "Doanhthu","thu"];
+  discolum: string[] = ["stt", "Nam", "soDonhang"];
   constructor(
     private adminservice: AdminService,
     private _exporHelperService: ExcelService,
-    private titleService: Title
+    private titleService: Title,
+    private nhanVien: NhanVienService
   ) {}
 
   chart: any;
   chartOptions1 = {
     animationEnabled: true,
-
+    title: {
+      text: "Thống kê tổng lương qua các năm",
+    },
     data: [
       {
         type: "doughnut",
@@ -86,7 +92,7 @@ export class ChartComponent implements OnInit {
     animationEnabled: true,
     theme: "light2",
     title: {
-      text: "Phân tích lương",
+      text: "Phân tích lương trong năm 2023",
     },
     axisY: {
       title: "khen thưởng",
@@ -147,7 +153,14 @@ export class ChartComponent implements OnInit {
       this.isAdmin = true;
       this.isLogin = true;
     }
-
+    this.nhanVien.doanhThuThang().subscribe((res:any) => {
+      this.data1 = res.obj;
+      // this.totalItems=res.total;
+    });
+    this.nhanVien.doanhThuNam().subscribe((res:any) => {
+      this.data2 = res.obj;
+      // this.totalItems=res.total;
+    });
 
   }
 
@@ -161,22 +174,23 @@ export class ChartComponent implements OnInit {
   }
 
   doExport() {
-    let headerTTThietHai: any[] = ["STT", "Tháng", "Doanh thu"];
+    let headerTTThietHai: any[] = ["STT", "Tháng", "Doanh thu","phòng Ban"];
 
-    let keyTTThietHai: any[] = ["TT", "thang", "Doanhthu"];
+    let keyTTThietHai: any[] = ["TT", "thang", "Doanhthu","phongBan"];
 
     let dataTemp: any[] = [];
 
-    this.dataSource.forEach((element, index) => {
+    this.data1.forEach((element, index) => {
       let item = {
         TT: index + 1,
-        thang: element.label,
-        Doanhthu: element.y + "đ",
+        thang: element.thang,
+        Doanhthu: element.tongDoanhThu + "đ",
+        phongBan:element.phongBan
       };
       dataTemp.push(item);
     });
 
-    let widthThietHai: any[] = [8, 50, 50];
+    let widthThietHai: any[] = [8, 50, 50,60];
     let excelTTThietHai: Excel = {
       title: "Thống kê Doanh thu cả năm",
       subTitle: "Hà Nội ngày " + formatDate(new Date(),"dd/MM/yyyy", "en-US") ,
@@ -186,34 +200,34 @@ export class ChartComponent implements OnInit {
       data: dataTemp,
       groupHeaders: null,
       groupMerge: null,
-      sheetName: "Hóa đơn",
+      sheetName: "Thống kê",
       headers: headerTTThietHai,
     };
     let arrayExcel = [];
     arrayExcel.push(excelTTThietHai);
 
     let timeSpan = new Date().toISOString();
-    this._exporHelperService.generateExcel("Doanh-thu" + timeSpan, arrayExcel);
+    this._exporHelperService.generateExcel("Thong-Ke" + timeSpan, arrayExcel);
   }
   doExport1() {
-    let headerTTThietHai: any[] = ["STT", "Tháng", "Số lượng đơn"];
+    let headerTTThietHai: any[] = ["STT", "Năm", "Tổng lương"];
 
     let keyTTThietHai: any[] = ["TT", "thang", "SL"];
 
     let dataTemp: any[] = [];
 
-    this.dataSl.forEach((element, index) => {
+    this.data2.forEach((element, index) => {
       let item = {
         TT: index + 1,
-        thang: element.label,
-        SL: element.y + " Đơn",
+        thang: element.name,
+        SL: element.tongDoanhThu + " đ",
       };
       dataTemp.push(item);
     });
 
     let widthThietHai: any[] = [8, 50, 50];
     let excelTTThietHai: Excel = {
-      title: "Thống kê Số lượng đơn cả năm",
+      title: "Thống kê Mức lương cả năm",
       subTitle: "Hà Nội ngày " + formatDate(new Date(),"dd/MM/yyyy", "en-US") ,
       workSheet: null,
       keys: keyTTThietHai,
@@ -228,7 +242,7 @@ export class ChartComponent implements OnInit {
     arrayExcel.push(excelTTThietHai);
 
     let timeSpan = new Date().toISOString();
-    this._exporHelperService.generateExcel("Don-hang" + timeSpan, arrayExcel);
+    this._exporHelperService.generateExcel("Thong-Ke" + timeSpan, arrayExcel);
   }
 
   getallUserOrderedBooks() {

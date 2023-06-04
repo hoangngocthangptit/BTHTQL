@@ -1,5 +1,7 @@
 package com.example.javaapi.controller;
 
+import com.example.javaapi.dto.DoanhThuDTO;
+import com.example.javaapi.dto.PhieuLuongDTO;
 import com.example.javaapi.entity.ChamCong;
 import com.example.javaapi.entity.NhanVien;
 import com.example.javaapi.entity.PhieuLuong;
@@ -41,5 +43,15 @@ public class PhieuLuongController {
     public ResponseEntity<Response> getMonth(@RequestParam Date time) {
         PhieuLuong phieuLuong= repo.findPhieuLuongByMonth(time);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, phieuLuong));
+    }
+    @GetMapping("/doanhThuTheoNam")
+    public ResponseEntity<Response> doanhThuName() {
+        List<DoanhThuDTO> doanhThuDTOS=repo.tongDoanhThuTheoNam();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, doanhThuDTOS));
+    }
+    @GetMapping("/doanhThuThang")
+    public ResponseEntity<Response> doanhThuThang() {
+        List<DoanhThuDTO> doanhThuDTOS=repo.tongDoanhThuTheoThang();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, doanhThuDTOS));
     }
 }

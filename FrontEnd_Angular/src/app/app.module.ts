@@ -79,6 +79,7 @@ import { KiLuatComponent } from './IUHR/ki-luat/ki-luat.component';
 import { ChucVuComponent } from './IUHR/chuc-vu/chuc-vu.component';
 import { EditAddPersonComponent } from './IUHR/edit-add-person/edit-add-person.component';
 import { EditPersonComponent } from './IUHR/edit-person/edit-person.component';
+import { BaoHiemComponent } from './IUHR/bao-hiem/bao-hiem.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     ChucVuComponent,
     EditAddPersonComponent,
     EditPersonComponent,
+    BaoHiemComponent,
 
 
 

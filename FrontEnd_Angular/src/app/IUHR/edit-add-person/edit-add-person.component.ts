@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { log } from 'console';
 import { CoreService } from 'src/app/Service/core.service';
 import { NhanVienService } from 'src/app/Service/nhan-vien.service';
 
@@ -16,7 +17,7 @@ export class EditAddPersonComponent implements OnInit {
   imgUrl: any
   imgUrl2: string;
   empForm: FormGroup;
-
+  selectedValue: number;
   isEditing: boolean = false;
   public addFormSubmitted = false;
   public listChucVu=[{id:"0", name: "Chưa đánh giá"}, {id:"1", name: "Đã comment"}, {id:"2", name: "đã sửa"},{id:"3", name: "đạt"},{id:"4", name: "không đạt"}];
@@ -46,6 +47,18 @@ export class EditAddPersonComponent implements OnInit {
 
     ngOnInit(): void {
       this.empForm.patchValue(this.data);
+      console.log(this.data);
+
+      if(this.data.idPhongBan.id!=undefined){
+        console.log(this.empForm.value);
+        this.empForm.value.chucVu=this.data.idChucVu.id;
+        this.empForm.value.phongBan = this.data.idPhongBan.id;
+        this.selectedValue=this.empForm.value.phongBan;
+        console.log('dfv',this.selectedValue);
+
+        console.log(this.empForm.value);
+
+      }
       //   if (this.book.id != undefined){
 
       // }
@@ -85,7 +98,7 @@ export class EditAddPersonComponent implements OnInit {
         formData.append('quocTich', this.empForm.value.quocTich);
         formData.append('idChucVu', this.empForm.value.chucVu);
         formData.append('idPhongBan', this.empForm.value.phongBan);
-              if(typeof(this.empForm.value.ngayBatDau) != 'string'){
+        if(typeof(this.empForm.value.ngayBatDau) != 'string'){
           formData.append('ngayBatDau', this.empForm.value.ngayBatDau);
         }
 

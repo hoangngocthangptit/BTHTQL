@@ -123,7 +123,10 @@ export class SidenavbarComponent implements OnInit {
   {
     this.router.navigate(['department'],{queryParams:{book:'books'}});
   }
-
+  bh()
+  {
+    this.router.navigate(['bhxh'],{queryParams:{book:'books'}});
+  }
   User(){
     this.router.navigate(['user']);
   }

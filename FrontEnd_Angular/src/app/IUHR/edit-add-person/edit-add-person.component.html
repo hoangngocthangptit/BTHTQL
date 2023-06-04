@@ -25,13 +25,12 @@
       <div class="row">
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Email</mat-label>
-          <!-- <input matInput type="" placeholder="bookDetails" formControlName="bookDetails" [readonly]="!isEditing"> -->
           <input matInput  type="" placeholder="email" formControlName="email">
       </mat-form-field>
       <mat-form-field appearance="outline" class="col-6">
         <mat-label>Phòng ban</mat-label>
         <div class="form-group">
-          <mat-select formControlName="phongBan">
+          <mat-select  [(value)]="selectedValue" formControlName="phongBan">
             <mat-option *ngFor="let val of listPhongBan" [value]="val.id">{{val.name}}
             </mat-option>
         </mat-select>
@@ -65,7 +64,7 @@
             </div>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-6">
-            <mat-label>Ngày bắt đầu <span style="color: red">*</span></mat-label>
+            <mat-label>Ngày vào làm <span style="color: red">*</span></mat-label>
             <input matInput [matDatepicker]="picker" formControlName="ngayBatDau" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.ngayBatDau.errors }">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -90,9 +89,9 @@
       <div class="file-field">
         <div class="d-flex justify-content-center ms-2">
           <div class="d-flex align-items-center">
-            <!-- <svg class="icon icon-5 text-gray-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="icon icon-5 text-gray-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path>
-            </svg> -->
+            </svg>
             <input  type="file" (change)="onImageUpload($event)">
 
           </div>
