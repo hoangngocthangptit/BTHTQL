@@ -96,36 +96,36 @@ export class SidenavbarComponent implements OnInit {
   }
   per()
   {
-    this.router.navigate(['per_view'],{queryParams:{book:'books'}});
+    this.router.navigate(['per_view']);
   }
 
   pay()
   {
-    this.router.navigate(['pay_view'],{queryParams:{book:'books'}});
+    this.router.navigate(['pay_view']);
   }
   time()
   {
-    this.router.navigate(['time_view'],{queryParams:{book:'books'}});
+    this.router.navigate(['time_view']);
   }
   khen()
   {
-    this.router.navigate(['khen-thuong'],{queryParams:{book:'books'}});
+    this.router.navigate(['khen-thuong']);
   }
   chuc()
   {
-    this.router.navigate(['chuc-vu'],{queryParams:{book:'books'}});
+    this.router.navigate(['chuc-vu']);
   }
   phat()
   {
-    this.router.navigate(['ki-luat'],{queryParams:{book:'books'}});
+    this.router.navigate(['ki-luat']);
   }
   department()
   {
-    this.router.navigate(['department'],{queryParams:{book:'books'}});
+    this.router.navigate(['department']);
   }
   bh()
   {
-    this.router.navigate(['bhxh'],{queryParams:{book:'books'}});
+    this.router.navigate(['bhxh']);
   }
   User(){
     this.router.navigate(['user']);

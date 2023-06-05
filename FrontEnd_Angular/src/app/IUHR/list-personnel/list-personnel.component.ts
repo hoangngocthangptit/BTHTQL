@@ -11,6 +11,7 @@ import { DialalogDeleteComponent } from "src/app/Component/dialalog-delete/diala
 import { EditAddPersonComponent } from "../edit-add-person/edit-add-person.component";
 import { NhanVienService } from "src/app/Service/nhan-vien.service";
 import { EditPersonComponent } from "../edit-person/edit-person.component";
+import { MatSort } from "@angular/material/sort";
 
 export interface PeriodicElement {
   name: string;
@@ -52,9 +53,10 @@ export class ListPersonnelComponent implements OnInit {
     "thaoTac",
 
   ];
-  dataSource: any = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource!: MatTableDataSource<any>;
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private titleService: Title,
     private dialog: MatDialog,
@@ -74,7 +76,6 @@ export class ListPersonnelComponent implements OnInit {
       this.isAdmin = true;
       this.isLogin = true;
     }
-    this.dataSource.paginator = this.paginator;
     console.log(this.dataSource);
 
 
@@ -129,7 +130,9 @@ export class ListPersonnelComponent implements OnInit {
   doSearh() {
 
     this.userService.getEmployeeList().subscribe((res:any) => {
-      this.dataSource = res.obj;
+      this.dataSource = new MatTableDataSource(res.obj);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
       // this.totalItems=res.total;
     });
   }

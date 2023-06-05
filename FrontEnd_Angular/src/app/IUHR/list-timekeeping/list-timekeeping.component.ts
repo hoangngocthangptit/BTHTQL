@@ -12,6 +12,7 @@ import { EditAddPersonComponent } from "../edit-add-person/edit-add-person.compo
 import { NhanVienService } from "src/app/Service/nhan-vien.service";
 import { Excel, ExcelService } from "src/app/Service/excel.service";
 import { formatDate } from "@angular/common";
+import { MatSort } from "@angular/material/sort";
 
 export interface PeriodicElement {
   name: string;
@@ -58,6 +59,7 @@ export class ListTimekeepingComponent implements OnInit {
   dataSource: any = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private titleService: Title,
     private dialog: MatDialog,
@@ -131,8 +133,9 @@ export class ListTimekeepingComponent implements OnInit {
   doSearh() {
 
     this.userService.chamCong().subscribe((res:any) => {
-      this.dataSource = res.obj;
-      // this.totalItems=res.total;
+      this.dataSource = new MatTableDataSource(res.obj);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
   onChange(){

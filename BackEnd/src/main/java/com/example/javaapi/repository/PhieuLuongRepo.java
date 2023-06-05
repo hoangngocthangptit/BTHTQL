@@ -11,8 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface PhieuLuongRepo extends CrudRepository<PhieuLuong, Long> {
-    @Query("SELECT u FROM PhieuLuong u WHERE month(u.thoiGian) = ?1")
-    PhieuLuong findPhieuLuongByMonth(Date thoiGian);
+    @Query("FROM PhieuLuong u WHERE ?1 is null or month(u.thoiGian) = ?1")
+    List<PhieuLuong> findPhieuLuongByMonth(Integer time);
     @Query("SELECT new com.example.javaapi.dto.DoanhThuDTO(month (p.thoiGian),SUM(p.tienLuong),nv.idPhongBan.ten)" +
             "from PhieuLuong p inner join NhanVien nv " +
             "on nv.id=p.idNhanVien.id" +

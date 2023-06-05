@@ -39,8 +39,8 @@
                       </div>
                       <div class="col-md-3 ml-1 mb-4">
                         <!-- <mat-label>Tìm kiếm theo tháng:</mat-label> -->
-                        <mat-select formControlName="chucVu"class="custom-select" placeholder="Tìm kiếm theo tháng:" (change)="onChange()" (clear)="reset()" >
-                          <mat-option *ngFor="let val of listChucVu " [value]="val.id">{{val.name}}
+                        <mat-select class="custom-select" placeholder="Tìm kiếm theo tháng:" [(ngModel)]="time" (ngModelChange)="onChange()" (clear)="reset()" >
+                          <mat-option  *ngFor="let val of listChucVu "   [value]="val.id">{{val.name}}
                           </mat-option>
                       </mat-select>
 
@@ -118,7 +118,7 @@
                           </ng-template>
                       </tr>
                   </table>
-                  <mat-paginator [pageSizeOptions]="[10,25,50,100]" showFirstLastButtons [pageSize]="pageSize" [length]="totalItems" (page)=" onChangePage($event)"></mat-paginator>
+                  <mat-paginator [pageSizeOptions]="[10,25,50, 100]" aria-label="Select page of users"></mat-paginator>
               </div>
 
           </mat-sidenav-content>

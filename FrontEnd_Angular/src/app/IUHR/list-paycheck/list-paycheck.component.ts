@@ -12,6 +12,8 @@ import { EditAddPersonComponent } from "../edit-add-person/edit-add-person.compo
 import { NhanVienService } from "src/app/Service/nhan-vien.service";
 import { Excel, ExcelService } from "src/app/Service/excel.service";
 import { formatDate } from "@angular/common";
+import { MatSort } from "@angular/material/sort";
+import { log } from "console";
 
 export interface PeriodicElement {
   name: string;
@@ -36,6 +38,7 @@ export class ListPaycheckComponent implements OnInit {
   opened = true;
   public opened2 = false;
   isUser = false;
+  disableSta=true;
   isSeller = false;
   isAdmin = true;
   email:any;
@@ -43,6 +46,7 @@ export class ListPaycheckComponent implements OnInit {
   page: number = 0;
   public evaluated=0;
   totalItems: number = 0;
+  public time = "0";
   public listChucVu=[{id:"1", name: "tháng 1"}, {id:"2", name: "tháng 2"}, {id:"3", name: "tháng 3"},{id:"4", name: "tháng 4"},{id:"5", name: "tháng 5"},{id:"6", name: "tháng 6"},{id:"7", name: "tháng 7"},{id:"8", name: "tháng 8"},{id:"9", name: "tháng 9"},{id:"10", name: "tháng 10"},{id:"11", name: "tháng 11"},{id:"12", name: "tháng 12"}];
   displayedColumns: string[] = [
     "position",
@@ -58,6 +62,7 @@ export class ListPaycheckComponent implements OnInit {
   dataSource: any = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   name: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private titleService: Title,
     private dialog: MatDialog,
@@ -78,7 +83,7 @@ export class ListPaycheckComponent implements OnInit {
       this.isAdmin = true;
       this.isLogin = true;
     }
-    this.dataSource.paginator = this.paginator;
+
 
   }
   nameEventHander($event: any) {
@@ -130,19 +135,28 @@ export class ListPaycheckComponent implements OnInit {
   }
   doSearh() {
 
-    this.userService.listLuong().subscribe((res:any) => {
-      this.dataSource = res.obj;
-      // this.totalItems=res.total;
+    this.userService.listLuong(parseInt(this.time)).subscribe((res:any) => {
+      this.dataSource = new MatTableDataSource(res.obj);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
+    console.log("test");
+
   }
   onChange(){
+    this.disableSta = false;
+    console.log(this.time);
+
     this.doSearh();
-    console.log("tranin: ",this.evaluated);
+
 
   }
   reset(){
-    this.evaluated=0;
-    this.doSearh;
+    this.time=null;
+    console.log("dsvnksnjv");
+
+    this.doSearh();
+    this.disableSta=true;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

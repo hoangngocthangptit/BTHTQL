@@ -18,11 +18,16 @@
           </div>
           </div> -->
           <mat-sidenav-content class="sidenav-content">
-              <div >
+              <div>
                   <div class="w-full p-2 mb-3" style="text-align: center;">
                  <h2> Bảng danh sách nhân viên</h2>
                   </div>
-
+                  <div style="margin-left: 45%;">
+                  <mat-form-field>
+                    <mat-label  class="mb-3" style="text-align: center;">Tìm kiếm</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Nhập vào" #input>
+                  </mat-form-field>
+                </div>
                   <div>
                       <div class="col-12 pl-0 mb-2" style="width: 100%;">
                           <!-- <button mat-raised-button [color]="'primary'" class="ml-6 button-create evn-bg-blue" (click)="doSearh()" style="border-radius: 10px;"> -->
@@ -109,7 +114,8 @@
                           </ng-template>
                       </tr>
                   </table>
-                  <mat-paginator [pageSizeOptions]="[10,25,50,100]" showFirstLastButtons [pageSize]="pageSize" [length]="totalItems" (page)=" onChangePage($event)"></mat-paginator>
+                  <mat-paginator [pageSizeOptions]="[10,25,50, 100]" aria-label="Select page of users"></mat-paginator>
+                  <!-- <mat-paginator [pageSizeOptions]="[10,25,50,100]" showFirstLastButtons [pageSize]="pageSize" [length]="totalItems" (page)=" onChangePage($event)"></mat-paginator> -->
               </div>
 
           </mat-sidenav-content>

@@ -39,11 +39,18 @@ public class PhieuLuongController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(new Response("phieu luong Added Successfully..", 200, nhanViens));
     }
-    @GetMapping("/findTime")
-    public ResponseEntity<Response> getMonth(@RequestParam Date time) {
-        PhieuLuong phieuLuong= repo.findPhieuLuongByMonth(time);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, phieuLuong));
-    }
+    @GetMapping("/findTime/{time}")
+    public ResponseEntity<Response> getMonth(@PathVariable Integer time) {
+        if (time==0){
+            List<PhieuLuong> phieuLuong= repo.findPhieuLuongByMonth(null);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, phieuLuong));
+        }
+       else{ List<PhieuLuong> phieuLuong= repo.findPhieuLuongByMonth(time);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, phieuLuong));}
+
+        }
+
+
     @GetMapping("/doanhThuTheoNam")
     public ResponseEntity<Response> doanhThuName() {
         List<DoanhThuDTO> doanhThuDTOS=repo.tongDoanhThuTheoNam();
