@@ -20,8 +20,8 @@ export class EditAddPersonComponent implements OnInit {
   selectedValue: number;
   isEditing: boolean = false;
   public addFormSubmitted = false;
-  public listChucVu=[{id:"0", name: "Chưa đánh giá"}, {id:"1", name: "Đã comment"}, {id:"2", name: "đã sửa"},{id:"3", name: "đạt"},{id:"4", name: "không đạt"}];
-  public listPhongBan=[{id:"0", name: "Chưa đánh giá"}, {id:"1", name: "Đã comment"}, {id:"2", name: "đã sửa"},{id:"3", name: "đạt"},{id:"4", name: "không đạt"}];
+  public listChucVu=[];
+  public listPhongBan=[];
   constructor(  private _fb: FormBuilder,
     private bookService: NhanVienService,
     private route: Router,
@@ -32,20 +32,22 @@ export class EditAddPersonComponent implements OnInit {
 
       this.empForm = this._fb.group({
         ho: ['',Validators.required],
-        ten: '',
+        ten: ['',Validators.required],
         email:  ['',Validators.required],
         gioiTinh: ['',Validators.required],
         diaChi:'',
         ngayBatDau:['',Validators.required],
         quocTich:'',
         image:'',
-        chucVu:'',
-        phongBan:''
+        chucVu:['',Validators.required],
+        phongBan:['',Validators.required],
       });
     }
     isLogin = true;
 
     ngOnInit(): void {
+      this.getListChucVu();
+      this.getListPhongBan();
       this.empForm.patchValue(this.data);
       console.log(this.data);
 
@@ -112,6 +114,18 @@ export class EditAddPersonComponent implements OnInit {
 
       this.isEditing = false;
     }
+    getListChucVu() {
+
+      this.bookService.chucVu().subscribe((res:any) => {
+        this.listChucVu =res.obj
+      });
+    }
+    getListPhongBan() {
+
+      this.bookService.phongban().subscribe((res:any) => {
+        this.listPhongBan =res.obj
+      });
+    }
 
     async onFormSubmit() {
       this.addFormSubmitted=true;
@@ -121,7 +135,7 @@ export class EditAddPersonComponent implements OnInit {
           // cap nhat trong db
           if (this.data) {
             this.bookService
-          .updateEmployee(this.data.id, this.empForm.value)
+          .updateEmployee(this.data.id, formData)
           .subscribe({
             next: (val: any) => {
               this._coreService.openSnackBar('Employee detail updated!');

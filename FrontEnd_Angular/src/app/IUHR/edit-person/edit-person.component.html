@@ -38,17 +38,7 @@
         </mat-form-field>
 
         </div>
-
       <div class="row">
-          <!-- <mat-form-field appearance="outline" class="col-6">
-              <mat-label>Chức vụ</mat-label>
-              <div class="form-group">
-                <mat-select formControlName="chucVu">
-                  <mat-option *ngFor="let val of listChucVu " [value]="val.id">{{val.name}}
-                  </mat-option>
-              </mat-select>
-            </div>
-          </mat-form-field> -->
           <mat-form-field appearance="outline" class="col-6">
             <mat-label>Email</mat-label>
             <input matInput  type="" placeholder="email" formControlName="email">
@@ -92,8 +82,6 @@
   </div>
 </div>
   </div>
-
-
   <div mat-dialog-actions class="action">
       <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
       <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>

@@ -53,8 +53,6 @@ public class NhanVienController {
         information.setTen(nv.getTen());
         information.setHo(nv.getHo());
         information.setQuocTich(nv.getQuocTich());
-        information.setIdChucVu(nv.getIdChucVu());
-        information.setIdPhongBan(nv.getIdPhongBan());
         information.setListBaoHiem(nv.getListBaoHiem());
         CopyFile.saveFiles(information.getImage(), nv.getImageFile());
         nv.setImageFile(null);

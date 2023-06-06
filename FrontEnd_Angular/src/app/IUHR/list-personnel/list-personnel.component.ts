@@ -46,7 +46,7 @@ export class ListPersonnelComponent implements OnInit {
     "position",
     "bookName",
     "authorName",
-   "no",
+    "no",
     "no2",
     "noOfBooks",
     "createdDate",
@@ -92,7 +92,7 @@ export class ListPersonnelComponent implements OnInit {
       return;
     }
     const dialogRef = this.dialog.open(EditAddPersonComponent, {
-      height: '80%',
+      height: '70%',
       width: '70%'
   });
     dialogRef.afterClosed().subscribe({
@@ -110,7 +110,7 @@ export class ListPersonnelComponent implements OnInit {
       return;
     }
     const dialogRef = this.dialog.open(EditPersonComponent, {
-      height: '80%',
+      height: '70%',
       width: '70%',
       data,
     });

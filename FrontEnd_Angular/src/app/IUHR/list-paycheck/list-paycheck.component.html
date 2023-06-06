@@ -57,27 +57,24 @@
                       </ng-container>
 
                       <ng-container matColumnDef="bookName">
-                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> tongSoGioLam</th>
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;">Tổng số giờ làm</th>
                         <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.tongSoGioLam}} </td>
                     </ng-container>
                       <!-- Position Column -->
                       <ng-container matColumnDef="authorName">
-                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> tienLuong</th>
+                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tiền lương</th>
                           <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.tienLuong}} </td>
                       </ng-container>
                       <ng-container matColumnDef="title">
-                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> khenThuong</th>
+                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Khen thưởng</th>
                           <td mat-cell *matCellDef="let element"> {{element.khenThuong}} </td>
                       </ng-container>
 
                       <ng-container matColumnDef="no">
-                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Chức kyLuat</th>
+                          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ky Luat</th>
                           <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.kyLuat}} </td>
                       </ng-container>
-                      <ng-container matColumnDef="noOfBooks">
-                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Địa thoiGian</th>
-                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.phieuLuongCol}} </td>
-                    </ng-container>
+
                     <ng-container matColumnDef="no1">
                       <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tên Nhân viên</th>
                       <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.idNhanVien.ten}} </td>

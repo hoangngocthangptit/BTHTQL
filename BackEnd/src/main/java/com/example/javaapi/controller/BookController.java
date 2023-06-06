@@ -88,7 +88,7 @@ public class BookController {
     }
     @GetMapping("/image/{filename:.+}")
     public ResponseEntity<byte[]> getImage(@PathVariable String filename) throws IOException {
-        String uploadDir="D:\\cham_cong\\BTL_LTRWEB\\BackEnd\\src\\main\\java\\img";
+        String uploadDir="D:\\cham_cong\\HTTQL\\QLNSWEB\\BackEnd\\src\\main\\java\\img";
         Path imagePath = Paths.get(uploadDir, filename);
         byte[] imageBytes = Files.readAllBytes(imagePath);
         HttpHeaders headers = new HttpHeaders();

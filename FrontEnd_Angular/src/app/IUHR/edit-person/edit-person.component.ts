@@ -19,8 +19,6 @@ export class EditPersonComponent implements OnInit {
 
   isEditing: boolean = false;
   public addFormSubmitted = false;
-  public listChucVu=[{id:"0", name: "Chưa đánh giá"}, {id:"1", name: "Đã comment"}, {id:"2", name: "đã sửa"},{id:"3", name: "đạt"},{id:"4", name: "không đạt"}];
-  public listPhongBan=[{id:"0", name: "Chưa đánh giá"}, {id:"1", name: "Đã comment"}, {id:"2", name: "đã sửa"},{id:"3", name: "đạt"},{id:"4", name: "không đạt"}];
   constructor(  private _fb: FormBuilder,
     private bookService: NhanVienService,
     private route: Router,
@@ -39,7 +37,7 @@ export class EditPersonComponent implements OnInit {
         quocTich:'',
         image:'',
         chucVu:'',
-        phongBan:''
+        phongBan:'',
       });
     }
     isLogin = true;
@@ -108,7 +106,7 @@ export class EditPersonComponent implements OnInit {
           // cap nhat trong db
           if (this.data) {
             this.bookService
-          .updateEmployee(this.data.id, this.empForm.value)
+          .updateEmployee(this.data.id, formData)
           .subscribe({
             next: (val: any) => {
               this._coreService.openSnackBar('Employee detail updated!');

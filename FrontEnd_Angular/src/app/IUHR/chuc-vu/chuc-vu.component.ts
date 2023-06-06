@@ -44,6 +44,7 @@ export class ChucVuComponent implements OnInit {
 
   ngOnInit(): void {
     this.doSearh();
+
   }
   opened = true;
   public opened2 = false;

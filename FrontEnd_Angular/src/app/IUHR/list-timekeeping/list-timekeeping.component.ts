@@ -43,15 +43,14 @@ export class ListTimekeepingComponent implements OnInit {
   pageSize:number=10;
   page: number = 0;
   public evaluated=0;
+  public time = "0";
+  disableSta=true;
   totalItems: number = 0;
   public listChucVu=[{id:"1", name: "tháng 1"}, {id:"2", name: "tháng 2"}, {id:"3", name: "tháng 3"},{id:"4", name: "tháng 4"},{id:"5", name: "tháng 5"},{id:"6", name: "tháng 6"},{id:"7", name: "tháng 7"},{id:"8", name: "tháng 8"},{id:"9", name: "tháng 9"},{id:"10", name: "tháng 10"},{id:"11", name: "tháng 11"},{id:"12", name: "tháng 12"}];
   displayedColumns: string[] = [
     "position",
     "no1",
     "bookName",
-    "authorName",
-    "no",
-    "noOfBooks",
     "createdDate",
     "thaoTac",
 
@@ -132,20 +131,23 @@ export class ListTimekeepingComponent implements OnInit {
   }
   doSearh() {
 
-    this.userService.chamCong().subscribe((res:any) => {
+    this.userService.chamCong(parseInt(this.time)).subscribe((res:any) => {
       this.dataSource = new MatTableDataSource(res.obj);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
   }
   onChange(){
+    this.disableSta = false;
+    console.log(this.time);
+
     this.doSearh();
-    console.log("tranin: ",this.evaluated);
 
   }
   reset(){
-    this.evaluated=0;
-    this.doSearh;
+    this.time=null;
+    this.doSearh();
+    this.disableSta=true;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -186,17 +188,15 @@ export class ListTimekeepingComponent implements OnInit {
 
     let dataTemp: any[] = [];
 
-    this.dataSource.forEach((element, index) => {
+    this.dataSource.data.forEach((element, index) => {
       let item = {
         TT: index + 1,
         tenNhanVien:element.idNhanVien.ten,
         TienLuong: element.ngayLam ,
         TongSoGioLam:element.soGioLam+ " giờ"
-
       };
       dataTemp.push(item);
     });
-
     let widthThietHai: any[] = [8, 50, 50,50];
     let excelTTThietHai: Excel = {
       title: "Chấm công nhân viên",

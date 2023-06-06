@@ -24,14 +24,14 @@
       </div>
       <div class="row">
         <mat-form-field appearance="outline" class="col-6">
-          <mat-label>Email</mat-label>
+          <mat-label>Email <span style="color: red">*</span></mat-label>
           <input matInput  type="" placeholder="email" formControlName="email">
       </mat-form-field>
       <mat-form-field appearance="outline" class="col-6">
-        <mat-label>Phòng ban</mat-label>
+        <mat-label>Phòng ban <span style="color: red">*</span></mat-label>
         <div class="form-group">
           <mat-select  [(value)]="selectedValue" formControlName="phongBan">
-            <mat-option *ngFor="let val of listPhongBan" [value]="val.id">{{val.name}}
+            <mat-option *ngFor="let val of listPhongBan" [value]="val.id">{{val.ten}}
             </mat-option>
         </mat-select>
       </div>
@@ -55,10 +55,10 @@
 
       <div class="row">
           <mat-form-field appearance="outline" class="col-6">
-              <mat-label>Chức vụ</mat-label>
+              <mat-label>Chức vụ <span style="color: red">*</span></mat-label>
               <div class="form-group">
                 <mat-select formControlName="chucVu">
-                  <mat-option *ngFor="let val of listChucVu " [value]="val.id">{{val.name}}
+                  <mat-option *ngFor="let val of listChucVu " [value]="val.id">{{val.tenChucvu}}
                   </mat-option>
               </mat-select>
             </div>

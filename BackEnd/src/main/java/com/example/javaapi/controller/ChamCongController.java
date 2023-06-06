@@ -85,5 +85,15 @@ public class ChamCongController {
         }
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Cham cong",200, chamCongs));
     }
+    @GetMapping("/findTime/{time}")
+    public ResponseEntity<Response> getMonth(@PathVariable Integer time) {
+        if (time==0){
+            List<ChamCong> phieuLuong= repo.findCongByMonth(null);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, phieuLuong));
+        }
+        else{ List<ChamCong> phieuLuong= repo.findCongByMonth(time);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Phieu Luong", 200, phieuLuong));}
+
+    }
 
 }

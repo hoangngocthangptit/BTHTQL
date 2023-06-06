@@ -22,8 +22,8 @@ export class NhanVienService {
   listLuong(time:number): Observable<any> {
     return this._http.get(`http://localhost:8080/phieu-luong/findTime/${time}`);
   }
-  chamCong(): Observable<any> {
-    return this._http.get('http://localhost:8080/cham-cong');
+  chamCong(time:number): Observable<any> {
+    return this._http.get(`http://localhost:8080/cham-cong/findTime/${time}`);
   }
   doanhThuThang(): Observable<any> {
     return this._http.get('http://localhost:8080/phieu-luong/doanhThuThang');

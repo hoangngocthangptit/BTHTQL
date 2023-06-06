@@ -16,4 +16,6 @@ public interface ChamCongRepo extends CrudRepository<ChamCong, Long> {
             "where month(u.ngayLam)=?1 " +
             "group by u.idNhanVien.id")
     List<PhieuLuongDTO> ChamCong(Integer thoiGian);
+    @Query("FROM ChamCong u WHERE ?1 is null or month(u.ngayLam) = ?1")
+    List<ChamCong> findCongByMonth(Integer time);
 }

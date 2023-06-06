@@ -54,7 +54,6 @@ export class ListPaycheckComponent implements OnInit {
     "bookName",
     "authorName",
     "no",
-    "noOfBooks",
     "createdDate",
     "thaoTac",
 
@@ -197,7 +196,7 @@ export class ListPaycheckComponent implements OnInit {
 
     let dataTemp: any[] = [];
 
-    this.dataSource.forEach((element, index) => {
+    this.dataSource.data.forEach((element, index) => {
       let item = {
         TT: index + 1,
         tenNhanVien:element.idNhanVien.ten,
@@ -208,6 +207,7 @@ export class ListPaycheckComponent implements OnInit {
       };
       dataTemp.push(item);
     });
+
 
     let widthThietHai: any[] = [8, 50, 50,50,50];
     let excelTTThietHai: Excel = {
