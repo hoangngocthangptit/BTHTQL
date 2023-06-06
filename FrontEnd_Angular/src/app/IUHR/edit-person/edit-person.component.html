@@ -22,21 +22,7 @@
           </mat-form-field>
 
       </div>
-      <div class="row">
-        <mat-form-field appearance="outline" class="col-6">
-          <mat-label>Email</mat-label>
-          <input matInput  type="" placeholder="email" formControlName="email">
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="col-6">
-        <mat-label>Phòng ban</mat-label>
-        <div class="form-group">
-          <mat-select formControlName="phongBan">
-            <mat-option *ngFor="let val of listPhongBan" [value]="val.id">{{val.name}}
-            </mat-option>
-        </mat-select>
-      </div>
-    </mat-form-field>
-      </div>
+
       <div class="row">
         <mat-form-field appearance="outline" class="col-6">
               <mat-label>Địa Chỉ</mat-label>
@@ -54,7 +40,7 @@
         </div>
 
       <div class="row">
-          <mat-form-field appearance="outline" class="col-6">
+          <!-- <mat-form-field appearance="outline" class="col-6">
               <mat-label>Chức vụ</mat-label>
               <div class="form-group">
                 <mat-select formControlName="chucVu">
@@ -62,7 +48,11 @@
                   </mat-option>
               </mat-select>
             </div>
-          </mat-form-field>
+          </mat-form-field> -->
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Email</mat-label>
+            <input matInput  type="" placeholder="email" formControlName="email">
+        </mat-form-field>
           <mat-form-field appearance="outline" class="col-6">
             <mat-label>Ngày vào làm <span style="color: red">*</span></mat-label>
             <input matInput [matDatepicker]="picker" formControlName="ngayBatDau" [ngClass]="{ 'is-invalid':addFormSubmitted&& AddEditFrom.ngayBatDau.errors }">

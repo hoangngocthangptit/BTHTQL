@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { DialalogDeleteComponent } from 'src/app/Component/dialalog-delete/dialalog-delete.component';
 import { Title } from "@angular/platform-browser";
@@ -11,6 +11,8 @@ import { BookserviceService } from "src/app/Service/bookservice.service";
 import { Router } from "@angular/router";
 
 import { log } from "console";
+import { MatSort } from '@angular/material/sort';
+import { NhanVienService } from 'src/app/Service/nhan-vien.service';
 export interface PeriodicElement {
   ten: string;
   position: number;
@@ -19,10 +21,6 @@ export interface PeriodicElement {
 
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, ten: 'svfd', mucThuong:'ffd', mieuTa: 'H'},
-  {position: 2, ten: 'svfd', mucThuong:'ffd', mieuTa: 'H'},
-  {position: 3, ten: 'svfd', mucThuong:'ffd', mieuTa: 'H'},
-  {position: 4, ten: 'svfd', mucThuong:'ffd', mieuTa: 'H'},
 
 
 ];
@@ -36,11 +34,12 @@ export class KhenThuongComponent implements OnInit {
   constructor(    private titleService: Title,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private bookService: BookserviceService,
+    private bookService: NhanVienService,
     private route: Router,
     private matSnackBar: ToastrService,) { }
 
   ngOnInit(): void {
+    this.doSearh();
   }
   opened = true;
   public opened2 = false;
@@ -51,6 +50,10 @@ export class KhenThuongComponent implements OnInit {
   pageSize:number=10;
   page: number = 0;
   totalItems: number = 0;
+  dataSource!: MatTableDataSource<any>;
+  name: string;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   openEditForm(){}
   deleteDilag(id:number){
     if (localStorage.getItem('token') === null) {
@@ -71,12 +74,20 @@ export class KhenThuongComponent implements OnInit {
   onChangePage(event: any) {
 
   }
+  doSearh() {
+
+    this.bookService.khen().subscribe((res:any) => {
+      this.dataSource = new MatTableDataSource(res.obj);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      // this.totalItems=res.total;
+    });
+  }
   nameEventHander($event: any) {
     this.opened2 = $event;
     console.log("2", this.opened2);
   }
   openAddEditEmpForm(){}
   displayedColumns: string[] = ['position','ten','mieuTa', 'thongTin', 'thaoTac'];
-  dataSource = ELEMENT_DATA;
 }
 

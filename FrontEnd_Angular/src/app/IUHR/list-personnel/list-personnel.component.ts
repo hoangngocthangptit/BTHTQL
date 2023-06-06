@@ -109,7 +109,7 @@ export class ListPersonnelComponent implements OnInit {
       this.route.navigateByUrl('login');
       return;
     }
-    const dialogRef = this.dialog.open(EditAddPersonComponent, {
+    const dialogRef = this.dialog.open(EditPersonComponent, {
       height: '80%',
       width: '70%',
       data,

@@ -108,7 +108,7 @@
                               </td>
                           </ng-template>
                       </tr>
-                  </table>  <mat-paginator [pageSizeOptions]="[10,25,50, 100]" aria-label="Select page of users"></mat-paginator>
+                  </table>              <mat-paginator [pageSizeOptions]="[10,25,50,100]" showFirstLastButtons [pageSize]="pageSize" [length]="totalItems" (page)=" onChangePage($event)"></mat-paginator>
               </div>
 
           </mat-sidenav-content>
