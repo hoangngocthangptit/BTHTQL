@@ -42,13 +42,16 @@
                     </ng-container>
                       <ng-container matColumnDef="mieuTa">
                         <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Mã số</th>
-                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.mieuTa}} </td>
+                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.maSo}} </td>
                     </ng-container>
                       <!-- Position Column -->
-
+                      <ng-container matColumnDef="muc">
+                        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> mục đóng</th>
+                        <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.mucDong}} </td>
+                    </ng-container>
                       <ng-container matColumnDef="heSo">
                           <th mat-header-cell *matHeaderCellDef style="text-align: center;">Thông tin</th>
-                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.heSo}} </td>
+                          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.thongTin}} </td>
                       </ng-container>
 
                       <!-- Symbol Column -->
