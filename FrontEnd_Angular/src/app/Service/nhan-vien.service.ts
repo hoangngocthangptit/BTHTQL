@@ -17,7 +17,7 @@ export class NhanVienService {
     return this._http.get('http://localhost:8080/nhan-vien');
   }
   deleteEmployee(id: number): Observable<any> {
-    return this._http.delete(`http://localhost:8080/nhan-vien/delete/${id}`);
+    return this._http.delete(`http://localhost:8080/nhan-vien/${id}`);
   }
   listLuong(time:number): Observable<any> {
     return this._http.get(`http://localhost:8080/phieu-luong/findTime/${time}`);
@@ -45,5 +45,8 @@ export class NhanVienService {
   }
   phongban(): Observable<any> {
     return this._http.get('http://localhost:8080/phong-bao/phong-ban');
+  }
+  chamCongThang(month:number): Observable<any> {
+    return this._http.get(`http://localhost:8080/cham-cong/result/${month}`);
   }
 }

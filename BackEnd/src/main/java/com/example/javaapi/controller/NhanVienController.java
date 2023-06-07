@@ -31,7 +31,7 @@ public class NhanVienController {
 
     @GetMapping("")
     public ResponseEntity<Response> getPerson() {
-        List<NhanVien> books = (List<NhanVien>) nhanVienRepo.findAll();
+        List<NhanVien> books = nhanVienRepo.findAllA();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Nhan vien",200, books));
     }
 
@@ -53,12 +53,12 @@ public class NhanVienController {
         information.setTen(nv.getTen());
         information.setHo(nv.getHo());
         information.setQuocTich(nv.getQuocTich());
-        information.setListBaoHiem(nv.getListBaoHiem());
-        CopyFile.saveFiles(information.getImage(), nv.getImageFile());
+
         nv.setImageFile(null);
+        information.setImageFile(null);
         nhanVienRepo.save(information);
         if(information!=null)
-            return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Nhan vien details are",200,information));
+            return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Nhan vien details are",200,nv));
         return null;
     }
     //
@@ -76,20 +76,22 @@ public class NhanVienController {
         nhanVien.setQuocTich(nv.getQuocTich());
         ChucVu chucVu=chucVuRepo.findById(nv.getIdChucVu()).get();
         PhongBan phongBan=phongBanRepo.findById(nv.getIdPhongBan()).get();
+        nhanVien.setListBaoHiem(nv.getBaoHiem());
         nhanVien.setIdPhongBan(phongBan);
         nhanVien.setIdChucVu(chucVu);
         nhanVien.setNgayBatDau(nv.getNgayBatDau());
         CopyFile.saveFiles(nhanVien.getImage(), nv.getImageFile());
-       nv.setImageFile(null);
+        nv.setImageFile(null);
        nhanVienRepo.save(nhanVien);
         return ResponseEntity.status(HttpStatus.CREATED).body(new Response("person Added Successfully..",200,nv));
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response> deleteBook(@PathVariable long id, @RequestHeader("token") String token) {
+    public ResponseEntity<Response> deleteBook(@PathVariable long id) {
         NhanVien book=nhanVienRepo.findById(id).get();
-        nhanVienRepo.deleteById(id);
+        book.setXoa(1);
+        nhanVienRepo.save(book);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("delete person",200,book));
 
     }

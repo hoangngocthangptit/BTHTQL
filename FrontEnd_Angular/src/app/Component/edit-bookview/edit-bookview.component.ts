@@ -84,9 +84,12 @@ export class EditBookviewComponent implements OnInit {
 
       let data = new FormData();
       var formData = new FormData();
+      console.log("thanghn");
       if(this.uploadedImage){
-        formData.append('imageFile', this.uploadedImage); // Thay thế $scope.media bằng giá trị của tập tin hình ảnh
+        formData.append('imageFile', this.uploadedImage);
+        // Thay thế $scope.media bằng giá trị của tập tin hình ảnh
       }
+
         formData.append('bookName', this.empForm.value.bookName);
         formData.append('category', this.empForm.value.category);
         formData.append('authorName', this.empForm.value.authorName);

@@ -27,7 +27,14 @@
                           <button  class="btn btn-primary"style="color: white; border-radius: 10px; background-color: rgba(4, 29, 131, 0.8);" (click)=" doExport()">
                             <i class="fa fa-file-excel-o" aria-hidden="true"></i> Xuất excel
                           </button>
+
+
+
                       </div>
+
+                    <div class="mb-4  pl-0 "  style="width: 100%;">
+                      <button mat-raised-button color="warn" style="margin-left: 20px;" (click)="onFormSubmit()">Chấm công tháng</button>
+                    </div>
                       <div class="col-md-3 ml-1 mb-4">
                         <!-- <mat-label>Tìm kiếm theo tháng:</mat-label> -->
                         <mat-select class="custom-select" placeholder="Tìm kiếm theo tháng:" [(ngModel)]="time" (ngModelChange)="onChange()" (clear)="reset()" >
@@ -36,7 +43,8 @@
                       </mat-select>
 
                   </div>
-                  </div>
+
+                </div>
 
 
                   <table mat-table [dataSource]="dataSource">

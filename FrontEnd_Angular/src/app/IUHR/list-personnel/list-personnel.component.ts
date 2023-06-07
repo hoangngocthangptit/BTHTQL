@@ -92,7 +92,7 @@ export class ListPersonnelComponent implements OnInit {
       return;
     }
     const dialogRef = this.dialog.open(EditAddPersonComponent, {
-      height: '70%',
+      height: '80%',
       width: '70%'
   });
     dialogRef.afterClosed().subscribe({
@@ -159,11 +159,11 @@ export class ListPersonnelComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.userService.deleteEmployee(id).subscribe((message) => {
-          if (message.statusCode === 200) {
+
 
             this.toastr.success("Thông báo","Xóa thành công")
             this.doSearh();
-          }
+
         });
       }
     });

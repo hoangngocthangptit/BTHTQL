@@ -41,6 +41,7 @@
     "ngx-toastr": "^13.2.1",
     "path": "^0.12.7",
     "rxjs": "~6.6.7",
+    "sweetalert2": "^11.7.11",
     "tslib": "^1.14.1",
     "typescript": "~4.2.3",
     "undo": "^0.1.4",

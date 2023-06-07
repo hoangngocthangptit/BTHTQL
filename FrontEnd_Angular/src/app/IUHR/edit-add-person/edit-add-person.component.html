@@ -74,6 +74,17 @@
           </div>
         </mat-form-field>
         </div>
+        <div class="row">
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Bảo hiểm <span style="color: red">*</span></mat-label>
+            <div class="form-group">
+              <mat-select formControlName="baoHiem" multiple="true">
+                <mat-option *ngFor="let val of listBaoHiem " [value]="val.id">{{val.ten}}
+                </mat-option>
+            </mat-select>
+          </div>
+        </mat-form-field>
+        </div>
 
 
    </div>

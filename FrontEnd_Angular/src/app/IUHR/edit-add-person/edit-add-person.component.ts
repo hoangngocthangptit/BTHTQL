@@ -22,6 +22,7 @@ export class EditAddPersonComponent implements OnInit {
   public addFormSubmitted = false;
   public listChucVu=[];
   public listPhongBan=[];
+  public listBaoHiem=[];
   constructor(  private _fb: FormBuilder,
     private bookService: NhanVienService,
     private route: Router,
@@ -41,6 +42,7 @@ export class EditAddPersonComponent implements OnInit {
         image:'',
         chucVu:['',Validators.required],
         phongBan:['',Validators.required],
+        baoHiem:['',Validators.required],
       });
     }
     isLogin = true;
@@ -48,6 +50,7 @@ export class EditAddPersonComponent implements OnInit {
     ngOnInit(): void {
       this.getListChucVu();
       this.getListPhongBan();
+      this.getBaoHiem();
       this.empForm.patchValue(this.data);
       console.log(this.data);
 
@@ -118,6 +121,12 @@ export class EditAddPersonComponent implements OnInit {
 
       this.bookService.chucVu().subscribe((res:any) => {
         this.listChucVu =res.obj
+      });
+    }
+    getBaoHiem() {
+
+      this.bookService.bao().subscribe((res:any) => {
+        this.listBaoHiem =res.obj
       });
     }
     getListPhongBan() {

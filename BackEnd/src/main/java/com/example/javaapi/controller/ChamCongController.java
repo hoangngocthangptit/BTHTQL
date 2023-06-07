@@ -1,10 +1,7 @@
 package com.example.javaapi.controller;
 
 import com.example.javaapi.dto.PhieuLuongDTO;
-import com.example.javaapi.entity.Book;
-import com.example.javaapi.entity.ChamCong;
-import com.example.javaapi.entity.NhanVien;
-import com.example.javaapi.entity.PhieuLuong;
+import com.example.javaapi.entity.*;
 import com.example.javaapi.repository.ChamCongRepo;
 import com.example.javaapi.repository.NhanVienRepo;
 import com.example.javaapi.repository.PhieuLuongRepo;
@@ -32,9 +29,12 @@ public class ChamCongController {
         List<ChamCong> books = (List<ChamCong>) repo.findAll();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Response("Cham cong",200, books));
     }
-    @GetMapping("/result")
-    public ResponseEntity<Response> getLuong(@RequestParam Integer mounth) {
-        List<PhieuLuongDTO> chamCongs =  repo.ChamCong(mounth);
+    @GetMapping("/result/{month}")
+    public ResponseEntity<Response> getLuong(@PathVariable Integer month) {
+        if (month==0){
+            month=1;
+        }
+        List<PhieuLuongDTO> chamCongs =  repo.ChamCong(month);
 
         for (PhieuLuongDTO chamCong:chamCongs
              ) {
@@ -43,42 +43,55 @@ public class ChamCongController {
             phieuLuong.setIdNhanVien(nv);
             Date currentTime = new Date();
             phieuLuong.setThoiGian(currentTime);
+            int max1=nv.getListKhenThuong().size();
+             int max2=nv.getListKyLuat().size();
+             KhenThuong kt=new KhenThuong();
+             KyLuat kl=new KyLuat();
+             if(max1>0&&max2>0) {
+                 kt = nv.getListKhenThuong().get(max1 - 1);
+                 kl = nv.getListKyLuat().get(max2 - 1);
+             }
+
+            Double Cong=0.0;
+            Integer bhxh=0;
+            if(nv.getListBaoHiem()!=null){bhxh=nv.getListBaoHiem().get(0).getMucDong();}
+             if(max1>0&&max2>0) {Cong=kt.getMucThuong()- kl.getMucPhat();}
             if(nv.getIdChucVu().getTenChucvu()=="Quản lý cơ sở")
             {
                 if (chamCong.getTongSoGioLam()>160)
-                    phieuLuong.setTienLuong(5000000.0);
+                    phieuLuong.setTienLuong(5000000.0*nv.getIdChucVu().getHeSoLuong()+Cong-bhxh);
                 else
-                    phieuLuong.setTienLuong(5000000.0*0.8);
+                    phieuLuong.setTienLuong(5000000.0*0.8-bhxh);
             }
             if(nv.getIdChucVu().getTenChucvu()=="Marketing")
             {
                 if (chamCong.getTongSoGioLam()>160)
-                    phieuLuong.setTienLuong(5000000.0);
+                    phieuLuong.setTienLuong(5000000.0*nv.getIdChucVu().getHeSoLuong()+Cong-bhxh);
                 else
-                    phieuLuong.setTienLuong(5000000.0*0.8);
+                    phieuLuong.setTienLuong(5000000.0*0.8+Cong-bhxh);
 
             }
             if(nv.getIdChucVu().getTenChucvu()=="Quản lý nhân sự")
             {
                 if (chamCong.getTongSoGioLam()>160)
-                    phieuLuong.setTienLuong(10000000.0);
+                    phieuLuong.setTienLuong(5000000*nv.getIdChucVu().getHeSoLuong()+Cong-bhxh);
                 else
-                    phieuLuong.setTienLuong(10000000.0*0.8);
+                    phieuLuong.setTienLuong(10000000.0*0.8+Cong-bhxh);
 
             }
             if(nv.getIdChucVu().getTenChucvu()=="Lễ tân")
             {
-                phieuLuong.setTienLuong(5000000.0);
+                phieuLuong.setTienLuong(5000000.0*nv.getIdChucVu().getHeSoLuong()+Cong-bhxh);
 
             }
             if(nv.getIdChucVu().getTenChucvu()=="Giáo viên")
             {
-                phieuLuong.setTienLuong(chamCong.getTongSoGioLam()*500000.0);
+                phieuLuong.setTienLuong(5000000.0*nv.getIdChucVu().getHeSoLuong()+Cong-bhxh);
 
             }
             if(nv.getIdChucVu().getTenChucvu()=="Trợ giảng")
             {
-                phieuLuong.setTienLuong(chamCong.getTongSoGioLam()*40000.0);
+                phieuLuong.setTienLuong(chamCong.getTongSoGioLam()*40000.0+Cong-bhxh);
 
             }
             phieuLuongRepo.save(phieuLuong);

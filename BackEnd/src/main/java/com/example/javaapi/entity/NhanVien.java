@@ -24,6 +24,7 @@ public class NhanVien {
     private String diaChi;
     private Date ngayBatDau;
     private Date ngayKetThuc;
+    private Integer xoa;
     private String quocTich;
     @ManyToOne
     @JoinColumn(name = "id_chuc_vu") // thông qua khóa ngoại
@@ -59,6 +60,7 @@ public class NhanVien {
     @JsonIgnore
     @Transient
     private MultipartFile imageFile;
+
 
 
 

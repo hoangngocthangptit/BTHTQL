@@ -13,7 +13,8 @@ import { NhanVienService } from "src/app/Service/nhan-vien.service";
 import { Excel, ExcelService } from "src/app/Service/excel.service";
 import { formatDate } from "@angular/common";
 import { MatSort } from "@angular/material/sort";
-
+import Swale from "sweetalert2";
+import Swal from "sweetalert2";
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -105,6 +106,26 @@ export class ListTimekeepingComponent implements OnInit {
       },
     });
   }
+  async onFormSubmit() {
+    this.userService.chamCongThang(parseInt(this.time)).subscribe(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Đã chấm công tháng",
+      }).then((result) => {
+        // Xử lý kết quả sau khi hiển thị Swal (nếu cần)
+      });
+    });
+  }
+
+//   if (response.code === 0) {
+//     Swal.fire({
+//         icon: "success",
+//         title: this._translateService.instant('MESSAGE.PROGRAM_MANAGEMENT.UPDATE_SUCCESS_OR'),
+//     }).then((result) => {
+//         this.afterEdit.emit('completed');
+//     });
+// }
+
   openEditForm(data: any) {
     if (localStorage.getItem('token') === null) {
       this.matSnackBar.warning('Please Login first');

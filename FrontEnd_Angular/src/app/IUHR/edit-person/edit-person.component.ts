@@ -73,8 +73,10 @@ export class EditPersonComponent implements OnInit {
 
       var formData = new FormData();
       if(this.uploadedImage){
-        formData.append('imageFile', this.uploadedImage); // Thay thế $scope.media bằng giá trị của tập tin hình ảnh
+        formData.append('imageFile', this.uploadedImage);
+        console.log("thanghn trong"); // Thay thế $scope.media bằng giá trị của tập tin hình ảnh
       } // Thay thế $scope.media bằng giá trị của tập tin hình ảnh
+      console.log("thanghn n");
         formData.append('ho', this.empForm.value.ho);
         formData.append('ten', this.empForm.value.ten);
         formData.append('email', this.empForm.value.email);
