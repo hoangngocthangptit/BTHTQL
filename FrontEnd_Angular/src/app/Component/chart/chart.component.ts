@@ -33,18 +33,18 @@ export class ChartComponent implements OnInit {
 
   ];
   dataQuanlity: any= [
-    { label: "Jan", y: 923 },
-    { label: "Feb", y: 524},
+    { label: "Jan", y: 1423 },
+    { label: "Feb", y: 924},
     { label: "Mar", y: 1233 },
     { label: "Apr", y: 1224 },
-    { label: "May", y: 922 },
-    { label: "Jun", y: 932 },
+    { label: "May", y: 1422 },
+    { label: "Jun", y: 1332 },
     { label: "Jul", y: 1021 },
-    { label: "Aug", y: 822 },
+    { label: "Aug", y: 1222 },
     { label: "Sep", y: 1223 },
-    { label: "Oct", y: 724 },
-    { label: "Nov", y: 814 },
-    { label: "Dec", y: 612 },
+    { label: "Oct", y: 1124 },
+    { label: "Nov", y: 914 },
+    { label: "Dec", y: 912 },
   ];
   dataSource: any = [];
   data1:any= [];
@@ -62,7 +62,7 @@ export class ChartComponent implements OnInit {
   chartOptions1 = {
     animationEnabled: true,
     title: {
-      text: "Thống kê tổng lương qua các năm",
+      text: "Thống kê tổng lương phòng ban qua các năm",
     },
     data: [
       {
@@ -77,12 +77,10 @@ export class ChartComponent implements OnInit {
           // { y: 23, name: "Facilities" },
           // { y: 17, name: "Taxes" },
           // { y: 12, name: "Insurance" }
-          { y: 28 },
-          { y: 10 },
-          { y: 10 },
-          { y: 15 },
-          { y: 23 },
+          { y: 38 },
           { y: 17 },
+          { y: 10 },
+          { y: 23 },
           { y: 12 },
         ],
       },
@@ -99,7 +97,7 @@ export class ChartComponent implements OnInit {
       includeZero: true,
     },
     axisY2: {
-      title: "Tổng doanh thu",
+      title: "Tổng lương (Triệu)",
       includeZero: true,
       labelFormatter: (e: any) => {
         var suffixes = ["", "K", "M", "B"];
@@ -140,7 +138,7 @@ export class ChartComponent implements OnInit {
       {
         type: "spline",
         showInLegend: true,
-        name: "Tổng lương",
+        name: "Tổng lương trong tháng",
         dataPoints: this.dataQuanlity
       },
     ],

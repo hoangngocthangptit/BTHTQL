@@ -16,8 +16,8 @@ public interface PhieuLuongRepo extends CrudRepository<PhieuLuong, Long> {
     @Query("SELECT new com.example.javaapi.dto.DoanhThuDTO(month(p.thoiGian),SUM(p.tienLuong),nv.idPhongBan.ten) " +
             "FROM PhieuLuong p " +
             "INNER JOIN NhanVien nv ON nv.id = p.idNhanVien.id " +
-            "WHERE YEAR(p.thoiGian) = 2023 " +
-            "GROUP BY nv.idPhongBan.id")
+            "WHERE YEAR(p.thoiGian) = 2023" +
+            "GROUP BY MONTH(p.thoiGian),nv.idPhongBan.id")
     List<DoanhThuDTO> tongDoanhThuTheoThang();
     @Query("SELECT new com.example.javaapi.dto.DoanhThuDTO(year (p.thoiGian),SUM(p.tienLuong))" +
             "from PhieuLuong p group by year (p.thoiGian)")
